@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_28_124226) do
     t.string "name"
     t.text "aim"
     t.float "hourly_rate"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.bigint "client_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
