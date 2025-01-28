@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration[7.1]
       t.string :name
       t.text :aim
       t.float :hourly_rate
-      t.boolean :completed
+      t.boolean :completed, default: false
       t.references :client, null: false, foreign_key: true
 
       t.timestamps
