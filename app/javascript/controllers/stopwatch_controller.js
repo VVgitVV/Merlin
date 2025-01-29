@@ -3,9 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="stopwatch"
 export default class extends Controller {
   static targets = ["stopwatchButton", "buttonText"]
-  // connect() {
-  //   console.log("Hello from stopwatch controller")
-  // }
 
   changeText(event) {
     event.preventDefault()

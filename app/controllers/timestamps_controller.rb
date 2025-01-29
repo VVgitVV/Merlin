@@ -13,5 +13,4 @@ class TimestampsController < ApplicationController
     @timestamp.start_time = DateTime.now
     render :new, status: :unprocessable_entity unless @timestamp.save
   end
-  # make methods here like calculate_date
 end
