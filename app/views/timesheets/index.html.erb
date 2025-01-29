@@ -1,0 +1,12 @@
+<h1>Timesheets for <%= @project.name %></h1>
+
+<ul>
+<% @timesheets.each do |timesheet| %>
+  <li><%= timesheet.id %></li>
+<% end %>
+</ul>
+
+<%= simple_form_for [@project, @timesheet] do |f| %>
+  <%= f.input :start_date%>
+  <%= f.submit 'Add' %>
+<% end %>

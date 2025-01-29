@@ -6,7 +6,7 @@ Client.destroy_all
 User.destroy_all
 
 # Create a user
-user = User.create!(
+user1 = User.create!(
   email: "developer@example.com",
   password: "password123", # Replace this with proper password handling in your app
   username: "freelance_dev",
@@ -18,13 +18,13 @@ user = User.create!(
 client1 = Client.create!(
   name: "Tech Solutions Inc.",
   description: "A technology consulting firm.",
-  user: user
+  user: user1
 )
 
 client2 = Client.create!(
   name: "Creative Designs Co.",
   description: "A graphic and web design agency.",
-  user: user
+  user: user1
 )
 
 # Create projects for client1
