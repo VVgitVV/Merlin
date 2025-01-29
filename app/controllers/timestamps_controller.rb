@@ -11,6 +11,8 @@ class TimestampsController < ApplicationController
     @timestamp = Timestamp.new
     @timestamp.timesheet = @timesheet
     @timestamp.start_time = DateTime.now
+    # just for test purposes
+    @timestamp.end_time = DateTime.now + 2.hours
     render :new, status: :unprocessable_entity unless @timestamp.save
   end
 end

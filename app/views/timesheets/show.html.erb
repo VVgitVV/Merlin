@@ -16,7 +16,7 @@
           <td><%= timestamp.date %></td>
           <td><%= timestamp.hours %></td>
           <td><%= timestamp.task_description %></td>
-          <td><%= timestamp.subtotal %></td>
+          <td>£<%= format('%.2f', timestamp.subtotal) %></td>
         <% end %>
       <% end %>
     </tr>
