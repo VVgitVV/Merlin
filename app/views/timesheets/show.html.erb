@@ -1,37 +1,24 @@
 <h1><%= @timesheet.start_date.strftime('%B %Y')%></h1>
 
-<% @timesheet.timestamps.each do |timesheet| %>
-  <% if timestamp.end_date %>
-
-  <% end %>
-<% end %>
-
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Date</th>
+      <th scope="col">Hours</th>
+      <th scope="col">Task</th>
+      <th scope="col">Subtotal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+      <% @timesheet.timestamps.each do |timestamp| %>
+        <% unless timestamp.end_time.nil? %>
+          <td><%= timestamp.date %></td>
+          <td><%= timestamp.hours %></td>
+          <td><%= timestamp.task_description %></td>
+          <td><%= timestamp.subtotal %></td>
+        <% end %>
+      <% end %>
     </tr>
   </tbody>
 </table>
