@@ -1,6 +1,6 @@
 <h1><%= @timesheet.start_date.strftime('%B %Y')%></h1>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Date</th>
@@ -20,5 +20,6 @@
         <% end %>
       <% end %>
     </tr>
+    <tr><td colspan="4"><strong>Total: </strong></td></tr>
   </tbody>
 </table>
