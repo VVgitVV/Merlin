@@ -1,18 +1,7 @@
-<!--Need to include all levels of nesting-->
-
-
 <div data-controller='stopwatch'>
   <div data-stopwatch-target='stopwatchButton'>
     <%= simple_form_for [@client, @project, @timesheet, @timestamp] do |f| %>
-      <%= f.submit 'Start', data: {action: 'click->stopwatch#record'} %>
+      <%= f.submit 'Start', data: {action: 'click->stopwatch#changeText'} %>
     <% end %>
   </div>
 </div>
-
-<!--
-<div data-controller='stopwatch'>
-  <div data-stopwatch-target='stopwatchButton'>
-    <a href="#" data-action='click->stopwatch#record'>Stop</a>
-  </div>
-</div>
--->

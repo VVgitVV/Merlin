@@ -7,14 +7,12 @@ export default class extends Controller {
   //   console.log("Hello from stopwatch controller")
   // }
 
-  record(event) {
+  changeText(event) {
     event.preventDefault()
-    // console.log(this.stopwatchButtonTarget.children[0][1].value)
     if (this.stopwatchButtonTarget.children[0][1].value == 'Start'){
       this.stopwatchButtonTarget.children[0][1].value = 'Stop'
     } else {
       this.stopwatchButtonTarget.children[0][1].value = 'Start'
     }
-
   }
 }

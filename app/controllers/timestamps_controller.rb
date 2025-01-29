@@ -1,5 +1,4 @@
 class TimestampsController < ApplicationController
-  # make methods here like calculate_date
   def index
     @client = Client.find(params[:client_id])
     @project = Project.find(params[:project_id])
@@ -13,10 +12,6 @@ class TimestampsController < ApplicationController
     @timestamp.timesheet = @timesheet
     @timestamp.start_time = DateTime.now
     render :new, status: :unprocessable_entity unless @timestamp.save
-    # if @timestamp.save
-    #   redirect_to client_project_timesheet_timestamps_path
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
   end
+  # make methods here like calculate_date
 end
