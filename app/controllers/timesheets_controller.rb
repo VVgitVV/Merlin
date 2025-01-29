@@ -13,8 +13,6 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.find(params[:id])
   end
 
-  # take new out of routes for timesheets - will be doing within index page
-
   def create
     @project = Project.find(params[:project_id])
     @timesheet = Timesheet.new
