@@ -2,11 +2,12 @@
 
 <ul>
 <% @timesheets.each do |timesheet| %>
-  <li><%= timesheet.id %></li>
+  <!--Need to include all levels of nesting-->
+  <li><%= link_to timesheet.start_date.strftime('%B %Y'), client_project_timesheet_path(@client, @project, timesheet) %></li>
 <% end %>
 </ul>
 
-<%= simple_form_for [@project, @timesheet] do |f| %>
-  <%= f.input :start_date%>
-  <%= f.submit 'Add' %>
+<!--Need to include all levels of nesting-->
+<%= simple_form_for [@client, @project, @timesheet] do |f| %>
+  <%= f.submit 'Create a new timesheet' %>
 <% end %>
