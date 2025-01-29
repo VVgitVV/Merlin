@@ -1,29 +1,31 @@
-<h1><%= @timesheet.start_date.strftime('%B %Y')%></h1>
+<div class="container">
+  <h1 class="ps-2"><%= @timesheet.start_date.strftime('%B %Y')%></h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Hours</th>
-      <th scope="col">Task</th>
-      <th scope="col">Subtotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <% @timesheet.timestamps.each do |timestamp| %>
-        <% unless timestamp.end_time.nil? %>
-          <td><%= timestamp.date %></td>
-          <td><%= timestamp.hours %></td>
-          <td><%= timestamp.task_description %></td>
-          <td>£<%= format('%.2f', timestamp.subtotal) %></td>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Hours</th>
+        <th scope="col">Task</th>
+        <th scope="col">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @timesheet.timestamps.each do |timestamp| %>
+          <% unless timestamp.end_time.nil? %>
+            <td><%= timestamp.date %></td>
+            <td><%= timestamp.hours %></td>
+            <td><%= timestamp.task_description %></td>
+            <td>£<%= format('%.2f', timestamp.subtotal) %></td>
+          <% end %>
         <% end %>
-      <% end %>
-    </tr>
-    <tr>
-      <td><strong>Total: </strong></td>
-      <td colspan="2"></td>
-      <td><strong>£<%= @timesheet.total %></strong></td>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+      <tr class="table-group-divider">
+        <td><strong>Total: </strong></td>
+        <td colspan="2"></td>
+        <td><strong>£<%= @timesheet.total %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
