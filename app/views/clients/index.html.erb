@@ -1,0 +1,24 @@
+<h1>Clients</h1>
+
+<%= link_to 'New Client', new_client_path, class: 'btn btn-success' %>
+
+<%= link_to (params[:archived] == "true" ? "Show Active Clients" : "Show Archived Clients"), clients_path(archived: (params[:archived] != "true")), class: 'btn btn-secondary' %>
+
+<ul>
+  <% @clients.each do |client| %>
+    <li>
+      <strong><%= client.name %></strong>
+      <p><%= client.description %></p>
+
+      <%= link_to "View", client_path(client), class: "btn btn-info" %>
+
+      <%= link_to 'Edit', edit_client_path(client), class: 'btn btn-primary' %>
+
+      <% if client.archived? %>
+        <%= button_to "Restore", restore_client_path(client), method: :patch, class: "btn btn-success" %>
+      <% else %>
+        <%= button_to "Archive", archive_client_path(client), method: :patch, class: "btn btn-danger" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

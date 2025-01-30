@@ -1,0 +1,9 @@
+<h1>Projects for <%= @client.name %></h1>
+
+<div class="projects-list">
+  <% @projects.each do |project| %>
+    <%= render partial: 'projects/project_card', locals: { project: project } %>
+  <% end %>
+</div>
+
+<%= link_to 'New Project', new_client_project_path(@client), class: 'btn btn-success' %>
