@@ -2,7 +2,7 @@ class Timestamp < ApplicationRecord
   belongs_to :timesheet
 
   def date
-    end_time.strftime('%m/%d/%Y')
+    end_time.strftime('%m/%d/%Y %H:%M')
   end
 
   def hours

@@ -7,7 +7,7 @@ export default class extends Controller {
   changeText(event) {
     // event.preventDefault()
     if (this.stopwatchButtonTarget.children[0][1].value == 'Start'){
-      this.stopwatchButtonTarget.children[0][1].value = 'Stop'
+      this.stopwatchButtonTarget.children[0][1].value = 'The clock is ticking!'
     } else {
       this.stopwatchButtonTarget.children[0][1].value = 'Start'
     }

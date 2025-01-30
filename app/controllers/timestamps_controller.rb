@@ -21,6 +21,7 @@ class TimestampsController < ApplicationController
     @project = Project.find(params[:project_id])
     @timesheet = Timesheet.find(params[:timesheet_id])
     @timestamp = Timestamp.find(params[:id])
+    # @timestamp = @timesheet.timestamps.last
     @timestamp.update(end_time: DateTime.now)
     redirect_to client_project_timesheet_timestamps_path(@client, @project, @timesheet)
   end

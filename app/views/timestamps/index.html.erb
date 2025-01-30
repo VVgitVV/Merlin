@@ -1,10 +1,13 @@
+<!--This is working but requires a page refresh-->
 <div data-controller='stopwatch'>
   <div data-stopwatch-target='stopwatchButton'>
-    <%= simple_form_for [@client, @project, @timesheet, @timestamp] do |f| %>
-      <%= f.submit 'Start', data: {action: 'click->stopwatch#changeText'} %>
+    <% if @timesheet.timestamps.last.end_time.present?%>
+      <%= simple_form_for [@client, @project, @timesheet, @timestamp] do |f| %>
+        <%= f.submit 'Start', data: {action: 'click->stopwatch#changeText'} %>
+      <% end %>
+    <% else %>
+      <%= link_to 'Stop', stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timesheet.timestamps.last), data: {turbo_method: :post} %>
     <% end %>
-  <!--if timestamp exists, and if that timestamp.end_time.nil? -->
-  <!--or if last timestamp doesn't have end time, show this button and hide start button-->
-    <%= link_to 'Stop', stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timesheet.timestamps.last), data: {turbo_method: :post} %>
+  <!--also need to prompt user to add a task description-->
   </div>
 </div>
