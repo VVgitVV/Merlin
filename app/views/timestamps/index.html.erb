@@ -8,6 +8,9 @@
     <% else %>
       <%= link_to 'Stop', stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timesheet.timestamps.last), data: {turbo_method: :post} %>
     <% end %>
-  <!--also need to prompt user to add a task description-->
+  <!--also need to prompt user to add a task description
+  (attach to stop button, onclick event but with stimulus ontroller to remove d-none class from form
+  also once stop is clicked, would be nice to show time elapsed-->
+
   </div>
 </div>
