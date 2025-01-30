@@ -1,0 +1,26 @@
+<h1>Project Details</h1>
+
+<%= render partial: 'projects/project_card', locals: { project: @project } %>
+
+<h2>Timesheets</h2>
+<% if @project.timesheets.any? %>
+  <ul>
+    <% @project.timesheets.each do |timesheet| %>
+      <li>
+        <strong>Timesheet:</strong> <%= timesheet.start_date %> - <%= timesheet.end_date %>
+        <%= link_to "View Timesheet", client_project_timesheet_path(@client, @project, timesheet), class: "btn btn-info" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No timesheets available for this project.</p>
+<% end %>
+
+<%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn btn-primary' %>
+<%= link_to 'Back to Projects', client_projects_path(@client), class: 'btn btn-secondary' %>
+
+<% if @project.archived? %>
+  <%= link_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
+<% else %>
+  <%= link_to "Archive Project", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
+<% end %>
