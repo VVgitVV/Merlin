@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :clients, except: :destroy do
     resources :projects, except: :destroy do
       resources :timesheets, except: :destroy do
-        resources :timestamps, except: :destroy do
+        resources :timestamps, except: [:index, :destroy] do
           member do
             post "stop"
           end

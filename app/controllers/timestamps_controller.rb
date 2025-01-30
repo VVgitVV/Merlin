@@ -1,7 +1,10 @@
 class TimestampsController < ApplicationController
   before_action :set_chained_instances
+  def show
+    @timestamp = Timestamp.find(params[:id])
+  end
 
-  def index
+  def new
     @timestamp = Timestamp.new
   end
 
@@ -10,7 +13,7 @@ class TimestampsController < ApplicationController
     @timestamp.timesheet = @timesheet
     @timestamp.start_time = DateTime.now
     if @timestamp.save
-      redirect_to client_project_timesheet_timestamps_path(@client, @project, @timesheet)
+      redirect_to client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp)
     else
       render :new, status: :unprocessable_entity
     end
@@ -19,7 +22,7 @@ class TimestampsController < ApplicationController
   def stop
     @timestamp = Timestamp.find(params[:id])
     @timestamp.update(end_time: DateTime.now)
-    redirect_to client_project_timesheet_timestamps_path(@client, @project, @timesheet)
+    redirect_to new_client_project_timesheet_timestamp_path(@client, @project, @timesheet)
   end
 
   def edit
@@ -29,7 +32,7 @@ class TimestampsController < ApplicationController
   def update
     @timestamp = Timestamp.find(params[:id])
     @timestamp.update(timestamp_params)
-    redirect_to client_project_timesheet_timestamps_path(@client, @project, @timesheet)
+    redirect_to client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp)
   end
 
   private

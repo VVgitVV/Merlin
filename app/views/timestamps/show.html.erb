@@ -1,0 +1,10 @@
+<div class="container">
+  <%= link_to 'Stop',
+    stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp),
+    data: {turbo_method: :post},
+    class: 'btn btn-outline-dark' %>
+
+  <%= render 'task_description', client: @client, project: @project, timesheet: @timesheet, timestamp: @timestamp %>
+
+  <%= link_to 'Back to timesheet', client_project_timesheet_path(@client, @project, @timesheet) %>
+</div>
