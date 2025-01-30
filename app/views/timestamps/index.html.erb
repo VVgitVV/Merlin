@@ -3,5 +3,8 @@
     <%= simple_form_for [@client, @project, @timesheet, @timestamp] do |f| %>
       <%= f.submit 'Start', data: {action: 'click->stopwatch#changeText'} %>
     <% end %>
+  <!--if timestamp exists, and if that timestamp.end_time.nil? -->
+  <!--or if last timestamp doesn't have end time, show this button and hide start button-->
+    <%= link_to 'Stop', stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timesheet.timestamps.last), data: {turbo_method: :post} %>
   </div>
 </div>
