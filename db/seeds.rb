@@ -1,3 +1,5 @@
+require 'faker'
+
 # Clear existing data
 Timestamp.destroy_all
 Timesheet.destroy_all
@@ -8,57 +10,81 @@ User.destroy_all
 # Create a user
 user = User.create!(
   email: "developer@example.com",
-  password: "password123", # Replace this with proper password handling in your app
+  password: "password123", # Replace this with secure password handling
   username: "freelance_dev",
   first_name: "John",
   last_name: "Doe"
 )
 
-# Create clients
-client1 = Client.create!(
-  name: "Tech Solutions Inc.",
-  description: "A technology consulting firm.",
-  user: user
-)
+# Client names as requested
+client_names = ["Percy", "Logan", "Vanessa", "Carter", "Rebecca"]
 
-client2 = Client.create!(
-  name: "Creative Designs Co.",
-  description: "A graphic and web design agency.",
-  user: user
-)
+# Define project names per client
+project_names = [
+  ["Mobile App Development", "Cloud Migration", "Data Analytics Setup", "Website SEO Optimization", "Backend API Development"],
+  ["Social Media Dashboard", "Online Marketplace", "User Authentication System", "AI Chatbot Integration", "Cybersecurity Enhancement"],
+  ["E-learning Platform", "E-commerce Redesign", "HR Management System", "Real Estate Listings", "Automated Booking System"],
+  ["Financial Forecasting Tool", "Stock Trading App", "Enterprise CRM System", "Healthcare Patient Portal", "Freelancer Time Tracking App"],
+  ["Smart Home Automation", "Video Streaming Platform", "Gaming API Development", "AR Shopping Experience", "Digital Marketing Suite"]
+]
 
-# Create projects for client1
-Project.create!(
-  name: "Website Revamp",
-  aim: "Redesign the company website with modern UX/UI principles.",
-  hourly_rate: 50.0,
-  completed: false,
-  client: client1
-)
+# Create Clients & Projects
+clients = []
 
-Project.create!(
-  name: "CRM Integration",
-  aim: "Integrate a customer relationship management system.",
-  hourly_rate: 55.0,
-  completed: false,
-  client: client1
-)
+client_names.each_with_index do |name, index|
+  client = Client.new(
+    name: name,
+    description: "Client #{name} specializes in #{Faker::Company.industry}.",
+    user: user
+  )
 
-# Create projects for client2
-Project.create!(
-  name: "E-commerce Platform",
-  aim: "Build an online store for the client.",
-  hourly_rate: 60.0,
-  completed: false,
-  client: client2
-)
+  if client.save
+    puts "✅ Created Client: #{client.name}"
+  else
+    puts "❌ Failed to create Client: #{client.name}"
+    puts client.errors.full_messages # 🔍 Print errors if save fails
+  end
+  clients << client
 
-Project.create!(
-  name: "Marketing Website",
-  aim: "Develop a marketing website to promote the client’s services.",
-  hourly_rate: 45.0,
-  completed: false,
-  client: client2
-)
+  # Create 5 projects for each client
+  project_names[index].each do |project_name|
+    project = Project.create!(
+      name: project_name,
+      aim: Faker::Lorem.sentence(word_count: 10),
+      hourly_rate: rand(40..100), # Random hourly rate between $40-$100
+      completed: [true, false].sample,
+      client: client
+    )
 
-puts "Seeding completed successfully!"
+    # Create 3 timesheets for each project
+    3.times do
+      start_date = Faker::Date.backward(days: rand(30..90))
+      end_date = start_date + rand(7..30) # Timesheets can last from 1 week to 1 month
+      timesheet = Timesheet.create!(
+        start_date: start_date,
+        end_date: end_date,
+        project: project
+      )
+
+      # Create 5 timestamps per timesheet
+      5.times do
+        start_time = Faker::Time.between(from: start_date, to: end_date).to_time
+        end_time = start_time + rand(1..5) * 3600 # Work sessions last between 1-5 hours
+        Timestamp.create!(
+          start_time: start_time,
+          end_time: end_time,
+          task_description: Faker::Hacker.say_something_smart,
+          timesheet: timesheet
+        )
+      end
+    end
+  end
+end
+
+puts "✅ Seeding completed successfully!"
+puts "📌 Created #{User.count} user"
+puts "📌 Created #{Client.count} clients"
+puts "📌 Created #{Project.count} projects"
+puts "📌 Created #{Timesheet.count} timesheets"
+puts "📌 Created #{Timestamp.count} timestamps"
+puts "📌 All data is associated correctly"
