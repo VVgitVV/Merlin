@@ -1,18 +1,25 @@
 <div class="container">
 
   <div data-controller='stopwatch'>
-    <div data-stopwatch-target='stopwatchButton'>
+
       <% if @timesheet.timestamps.last.end_time.present?%>
         <%= simple_form_for [@client, @project, @timesheet, @timestamp] do |f| %>
-          <%= f.submit 'Start', data: {action: 'click->stopwatch#changeText'} %>
+          <%= f.submit 'Start', class: 'btn btn-outline-success' %>
         <% end %>
       <% else %>
-        <%= link_to 'Stop', stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timesheet.timestamps.last), data: {turbo_method: :post} %>
+        <div data-action='click->stopwatch#showTaskForm'>
+          <%= link_to 'Stop',
+          stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timesheet.timestamps.last),
+          data: {turbo_method: :post},
+          class: 'btn btn-outline-dark' %>
+        </div>
       <% end %>
+      <div data-stopwatch-target='taskForm' class='d-none'>
+        <p>What task did you accomplish: </p>
+      </div>
     <!--also need to prompt user to add a task description
     (attach to stop button, onclick event but with stimulus ontroller to remove d-none class from form
     also once stop is clicked, would be nice to show time elapsed-->
-    </div>
   </div>
 
   <%= link_to 'Back to timesheet', client_project_timesheet_path(@client, @project, @timesheet) %>
