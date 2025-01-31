@@ -20,7 +20,8 @@
 <%= link_to 'Back to Projects', client_projects_path(@client), class: 'btn btn-secondary' %>
 
 <% if @project.archived? %>
-  <%= link_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
+  <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
 <% else %>
-  <%= link_to "Archive Project", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
+  <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
+
 <% end %>

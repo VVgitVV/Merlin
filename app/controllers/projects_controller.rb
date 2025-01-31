@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :archive, :restore]
 
   def index
-    @projects = @client.projects.active
+    # @projects = @client.projects.active
+    if params[:archived] == "true"
+      @projects = @client.projects.where(archived: true)
+    else
+      @projects = @client.projects.where(archived: false)
+    end
   end
 
   def show
@@ -25,8 +30,9 @@ class ProjectsController < ApplicationController
   end
 
   def archive
+    @project = Project.find(params[:id])
     @project.update(archived: true)
-    redirect_to client_projects_path(@client), notice: 'Project was archived successfully.'
+    redirect_to client_projects_path(@project.client), notice: 'Project was successfully archived.'
   end
 
   def restore
