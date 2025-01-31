@@ -1,15 +1,17 @@
-<h1>All Projects</h1>
+<div class="container">
+  <h1>All Projects</h1>
 
 
-<!-- Projects List -->
-<div class="projects-list">
-  <% @projects.each do |project| %>
-    <%= render partial: 'projects/project_card', locals: { project: project } %>
+  <!-- Projects List -->
+  <div class="projects-list">
+    <% @projects.each do |project| %>
+      <%= render partial: 'projects/project_card', locals: { project: project } %>
+    <% end %>
+  </div>
+
+  <% if @client.present? %>
+    <% unless params[:archived] == "true" %>
+      <%= link_to 'New Project', new_client_project_path(@client), class: 'btn btn-success' %>
+    <% end %>
   <% end %>
 </div>
-
-<% if @client.present? %>
-  <% unless params[:archived] == "true" %>
-    <%= link_to 'New Project', new_client_project_path(@client), class: 'btn btn-success' %>
-  <% end %>
-<% end %>
