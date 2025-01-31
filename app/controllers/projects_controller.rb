@@ -3,11 +3,21 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :archive, :restore]
 
   def index
-    # @projects = @client.projects.active
-    if params[:archived] == "true"
-      @projects = @client.projects.where(archived: true)
+    if @client
+      # @projects = @client.projects.active
+      if params[:archived] == "true"
+        @projects = @client.projects.where(archived: true)
+      else
+        @projects = @client.projects.where(archived: false)
+      end
+      render :index_for_client
     else
-      @projects = @client.projects.where(archived: false)
+      if params[:archived] == "true"
+        @projects = Project.where(archived: true)
+      else
+        @projects = Project.where(archived: false)
+      end
+      render :index
     end
   end
 
@@ -43,7 +53,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_client
-    @client = Client.find(params[:client_id])
+    @client = Client.find(params[:client_id]) if params[:client_id].present?
   end
 
   def set_project

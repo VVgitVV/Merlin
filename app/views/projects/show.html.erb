@@ -7,7 +7,7 @@
   <ul>
     <% @project.timesheets.each do |timesheet| %>
       <li>
-        <strong>Timesheet:</strong> <%= timesheet.start_date %> - <%= timesheet.end_date %>
+        <strong>Timesheet:</strong> <%= timesheet.end_date.strftime('%b %d, %Y') %>
         <%= link_to "View Timesheet", client_project_timesheet_path(@client, @project, timesheet), class: "btn btn-info" %>
       </li>
     <% end %>
@@ -17,7 +17,8 @@
 <% end %>
 
 <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn btn-primary' %>
-<%= link_to 'Back to Projects', client_projects_path(@client), class: 'btn btn-secondary' %>
+<%= link_to 'All Projects', projects_path, class: 'btn btn-secondary' %>
+<%= link_to "Projects for #{@client.name}", client_projects_path(@client), class: 'btn btn-secondary' %>
 
 <% if @project.archived? %>
   <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
