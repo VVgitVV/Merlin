@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @timesheet.timestamps.each do |timestamp| %>
+      <% @timestamps.each do |timestamp| %>
         <% unless timestamp.end_time.nil? || timestamp.hours == 0.0 %>
           <tr>
             <td><%= timestamp.date %></td>

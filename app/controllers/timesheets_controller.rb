@@ -11,6 +11,7 @@ class TimesheetsController < ApplicationController
 
   def show
     @timesheet = Timesheet.find(params[:id])
+    @timestamps = @timesheet.timestamps.sort_by(&:date)
   end
 
   def create
