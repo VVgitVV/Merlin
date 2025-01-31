@@ -31,7 +31,11 @@ Rails.application.routes.draw do
       patch :restore, on: :member
 
       resources :timesheets, except: :destroy do
-        resources :timestamps, only: [:new, :create]
+        resources :timestamps, except: [:index, :destroy] do
+          member do
+            post "stop"
+          end
+        end
       end
     end
   end

@@ -1,0 +1,13 @@
+<h1>Timesheets for <%= @project.name %></h1>
+
+<ul>
+<% @timesheets.each do |timesheet| %>
+  <!--Need to include all levels of nesting-->
+  <li><%= link_to timesheet.start_date.strftime('%B %Y'), client_project_timesheet_path(@client, @project, timesheet) %></li>
+<% end %>
+</ul>
+
+<!--Need to include all levels of nesting-->
+<%= simple_form_for [@client, @project, @timesheet] do |f| %>
+  <%= f.submit 'Create a new timesheet' %>
+<% end %>
