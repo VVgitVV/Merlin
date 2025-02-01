@@ -1,0 +1,15 @@
+.stopwatch {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid $red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.stopwatch-container {
+  display: flex;
+  justify-content: center;
+}
