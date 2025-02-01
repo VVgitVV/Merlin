@@ -6,13 +6,14 @@
       <tr>
         <th scope="col">Date</th>
         <th scope="col">Hours</th>
-        <th scope="col">Task</th>
+        <th scope="col">Tasks Accomplished</th>
         <th scope="col">Subtotal</th>
       </tr>
     </thead>
     <tbody>
       <% @timestamps.each do |timestamp| %>
         <% unless timestamp.end_time.nil? || timestamp.hours == 0.0 %>
+          <!--Create conditional with if timestamps.same_date, group together-->
           <tr>
             <td><%= timestamp.date %></td>
             <td><%= timestamp.hours %></td>

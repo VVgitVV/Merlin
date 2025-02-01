@@ -1,7 +1,7 @@
 <div class="project-card">
   <h3 class="project-title"><%= project.name %></h3>
   <p class="project-description"><%= project.aim %></p>
-  <p class="project-hourly-rate">Hourly Rate: $<%= project.hourly_rate %>/hour</p>
+  <p class="project-hourly-rate">Hourly Rate: £<%= format('%.2f', project.hourly_rate) %>/hour</p>
   <p class="project-status">
     Status: <%= project.completed ? "Completed" : "In Progress" %>
   </p>
