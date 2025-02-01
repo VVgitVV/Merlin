@@ -7,7 +7,8 @@
       New timesheet
     </div>
     <div data-show-form-target="form" class="d-none">
-      <%= simple_form_for [@timesheet] do |f| %>
+      <%= simple_form_for @timesheet do |f| %>
+        <!--Maybe come back to showing client name along with project-->
         <%= f.association :project %>
         <%= f.submit 'Create' %>
       <% end %>

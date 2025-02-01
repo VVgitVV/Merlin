@@ -30,14 +30,18 @@ class TimesheetsController < ApplicationController
   #   end
   # end
   def create
-    @project = Project.find(params[:project_id])
-    @timesheet = Timesheet.new
-    @timesheet.project = @project
-    @timesheet.start_date = DateTime.now
+    raise
+    @timesheet = Timesheet.new(timesheet_params)
     if @timesheet.save
-      redirect_to client_project_timesheets_path
+      redirect_to client_project_timesheets_path(@timesheet.project.client, @timesheet.project)
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def timesheet_params
+    params.require(:timesheet).permit(:project_id)
   end
 end
