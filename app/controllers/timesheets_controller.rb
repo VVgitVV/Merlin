@@ -2,12 +2,14 @@ require 'date'
 
 class TimesheetsController < ApplicationController
   def index
-    @client = Client.find(params[:client_id])
-    @project = Project.find(params[:project_id])
-    @timesheets = Timesheet.where(project: params[:project_id])
-    @timesheet = Timesheet.new
-    @timesheet.project = @project
   end
+  # def index
+  #   @client = Client.find(params[:client_id])
+  #   @project = Project.find(params[:project_id])
+  #   @timesheets = Timesheet.where(project: params[:project_id])
+  #   @timesheet = Timesheet.new
+  #   @timesheet.project = @project
+  # end
 
   def show
     @timesheet = Timesheet.find(params[:id])
