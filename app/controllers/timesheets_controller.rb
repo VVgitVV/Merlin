@@ -1,6 +1,8 @@
 require 'date'
 
 class TimesheetsController < ApplicationController
+  before_action :set_project, only: :create
+
   def index
     @timesheets = Timesheet.all.order(:created_at)
     @timesheet = Timesheet.new
@@ -12,9 +14,9 @@ class TimesheetsController < ApplicationController
   end
 
   def create
-    @timesheet = Timesheet.new(timesheet_params)
+    @timesheet = Timesheet.new(project: @project)
     if @timesheet.save
-      redirect_to client_project_timesheets_path(@timesheet.project.client, @timesheet.project)
+      redirect_to client_project_timesheets_path(@client, @project)
     else
       render :index, status: :unprocessable_entity
     end
@@ -22,7 +24,9 @@ class TimesheetsController < ApplicationController
 
   private
 
-  def timesheet_params
-    params.require(:timesheet).permit(:project_id)
+  def set_project
+    @client = Client.find(params[:client_id])
+    @project = @client.projects.find(params[:project_id])
   end
+
 end

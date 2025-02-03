@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   def show
     # @project is set using set_project
     @timestamp = Timestamp.new
+    @timesheet = Timesheet.new(project_id: params[:id])
   end
 
   def new
