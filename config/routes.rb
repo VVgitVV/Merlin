@@ -3,11 +3,10 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :projects, only: [:index]
   resources :timesheets, only: [:index] do
-    member do
-      post "generate_pdf"
-    end
-    member do
-      get "invoice"
+    resources :invoices, only: [:show] do
+      member do
+        post "generate_pdf"
+      end
     end
     resources :timestamps, except: %i[index destroy] do
       member do
