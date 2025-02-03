@@ -23,7 +23,8 @@ class TimestampsController < ApplicationController
   def stop
     @timestamp = Timestamp.find(params[:id])
     @timestamp.update(end_time: DateTime.now)
-    redirect_to new_timesheet_timestamp_path(@timesheet)
+    # redirect_to new_timesheet_timestamp_path(@timesheet)
+    redirect_to client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet)
   end
 
   def edit
@@ -31,6 +32,7 @@ class TimestampsController < ApplicationController
   end
 
   def update
+    # this isn't working anymore
     @timestamp = Timestamp.find(params[:id])
     @timestamp.update(timestamp_params)
     redirect_to timesheet_timestamp_path(@timesheet, @timestamp)

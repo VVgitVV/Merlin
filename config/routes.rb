@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :projects, only: [:index]
   resources :timesheets, only: [:index] do
-    resources :timestamps, only: %i[new show create] do
+    resources :timestamps, except: %i[index destroy] do
       member do
         post "stop"
       end
