@@ -1,6 +1,6 @@
 <div class="container mb-5">
   <h1 class="ps-2"><%= "#{@timesheet.project.name}<br>#{@timesheet.title}".html_safe %></h1>
-  <!--Make table partial-->
+  <!-- Make table partial -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -10,14 +10,31 @@
         <th scope="col">Subtotal</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody data-controller="show-form">
       <% @timestamps.each do |timestamp| %>
         <% unless timestamp.end_time.nil? || timestamp.hours == 0.0 %>
-          <!--Create conditional with if timestamps.same_date, group together-->
-          <tr>
+          <!-- Table row displaying timestamp -->
+          <tr data-show-form-target="row">
             <td><%= timestamp.date %></td>
             <td><%= timestamp.hours %></td>
-            <td><%= timestamp.task_description %></td>
+            <td>
+              <%= timestamp.task_description %>
+              <!-- Edit link trigger -->
+              <div>
+                <p data-action="click->show-form#reveal">Edit</p> <i class="fa-solid fa-feather d-none"></i>
+              </div>
+            </td>
+            <td>£<%= format('%.2f', timestamp.subtotal) %></td>
+          </tr>
+          <tr data-show-form-target="form" class="d-none">
+            <td><%= timestamp.date %></td>
+            <td><%= timestamp.hours %></td>
+            <td>
+              <%= simple_form_for [@timesheet, timestamp] do |f| %>
+                <%= f.input :task_description, label: false %>
+                <%= f.submit 'Save'%>
+              <% end %>
+            </td>
             <td>£<%= format('%.2f', timestamp.subtotal) %></td>
           </tr>
         <% end %>
@@ -29,12 +46,13 @@
       </tr>
     </tbody>
   </table>
-  <!--<%= link_to 'Start stopwatch', new_timesheet_timestamp_path(@timesheet) %>-->
+
   <div class="stopwatch-container">
     <%= simple_form_for [@timesheet, @timestamp] do |f| %>
       <%= f.submit 'Start', class: 'stopwatch' %>
     <% end %>
   </div>
+
   <%= link_to 'Project dashboard', client_project_path(@timesheet.project.client, @timesheet.project) %>
   <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice) %>
 

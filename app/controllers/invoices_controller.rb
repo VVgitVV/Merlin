@@ -42,5 +42,4 @@ class InvoicesController < ApplicationController
       puts error.backtrace[0..3].join("\n")
     end
   end
-
 end
