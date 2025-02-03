@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :projects, only: [:index]
   resources :timesheets, only: [:index]
-  resources :timestamps, only: %i[new show]
+  resources :timestamps, only: %i[new show create]
   resources :clients, except: :destroy do
     patch :archive, on: :member
     patch :restore, on: :member
