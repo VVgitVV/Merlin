@@ -12,7 +12,6 @@ class TimesheetsController < ApplicationController
   end
 
   def create
-    raise
     @timesheet = Timesheet.new(timesheet_params)
     if @timesheet.save
       redirect_to client_project_timesheets_path(@timesheet.project.client, @timesheet.project)
