@@ -9,14 +9,9 @@
     <% @clients.each do |client| %>
       <li>
         <strong><%= client.name %></strong>
-        <p><%= client.description %></p>
-        <!--
-        Add back in once we have show page
-        <%= link_to "View", client_path(client), class: "btn btn-info" %>
-        -->
-        <%= link_to "View", client_projects_path(client), class: "btn btn-info" %>
+        <p><%= truncate(client.description, length: 100) %></p> <!-- Shortened version -->
 
-        <%= link_to 'Edit', edit_client_path(client), class: 'btn btn-primary' %>
+        <%= link_to "View", client_projects_path(client), class: "btn btn-info" %>
 
         <% if client.archived? %>
           <%= button_to "Restore", restore_client_path(client), method: :patch, class: "btn btn-success" %>
