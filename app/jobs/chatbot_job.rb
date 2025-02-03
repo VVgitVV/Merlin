@@ -3,6 +3,7 @@ class ChatbotJob < ApplicationJob
 
   def perform(question)
     # Do something later
+    @question = question
     chatgpt_response = client.chat(
       parameters: {
         model: "gpt-4o-mini",
@@ -24,10 +25,11 @@ class ChatbotJob < ApplicationJob
   def client
     @client ||= OpenAI::Client.new
   end
+
   def questions_formatted_for_openai
     questions = @question.user.questions
     results = []
-    results << { role: "system", content: "You are Merlin, the famous medieval magician, you know all about king arthur and his knights.You can see into the future. Your answers are not longer then 20 words." }
+    results << { role: "system", content: "You are Merlin, the famous medieval magician, you know all about king arthur and his knights. Your answers are not longer then 100 words." }
     questions.each do |question|
       results << { role: "user", content: question.user_question }
       results << { role: "assistant", content: question.ai_answer || "" }
