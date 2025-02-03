@@ -23,17 +23,16 @@
   <%= link_to 'All Projects', projects_path, class: 'btn btn-secondary' %>
   <%= link_to "Projects for #{@client.name}", client_projects_path(@client), class: 'btn btn-secondary' %>
 
+  <% if @project.archived? %>
+    <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
+  <% else %>
+    <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
+  <% end %>
+
   <!--Adding stopwatch button-->
   <div class="stopwatch-container">
     <%= simple_form_for [@project.timesheets.last, @timestamp] do |f| %>
       <%= f.submit 'Start', class: 'stopwatch' %>
     <% end %>
   </div>
-
-  <% if @project.archived? %>
-    <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
-  <% else %>
-    <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
-
-  <% end %>
 </div>
