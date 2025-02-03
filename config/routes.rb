@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     member do
       post "generate_pdf"
     end
+    member do
+      get "invoice"
+    end
     resources :timestamps, except: %i[index destroy] do
       member do
         post "stop"
