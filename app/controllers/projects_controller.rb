@@ -3,7 +3,22 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :archive, :restore]
 
   def index
-    @projects = @client.projects.active
+    if @client
+      # @projects = @client.projects.active
+      if params[:archived] == "true"
+        @projects = @client.projects.where(archived: true)
+      else
+        @projects = @client.projects.where(archived: false)
+      end
+      render :index_for_client
+    else
+      if params[:archived] == "true"
+        @projects = Project.where(archived: true)
+      else
+        @projects = Project.where(archived: false)
+      end
+      render :index
+    end
   end
 
   def show
@@ -25,8 +40,9 @@ class ProjectsController < ApplicationController
   end
 
   def archive
+    @project = Project.find(params[:id])
     @project.update(archived: true)
-    redirect_to client_projects_path(@client), notice: 'Project was archived successfully.'
+    redirect_to client_projects_path(@project.client), notice: 'Project was successfully archived.'
   end
 
   def restore
@@ -37,7 +53,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_client
-    @client = Client.find(params[:client_id])
+    @client = Client.find(params[:client_id]) if params[:client_id].present?
   end
 
   def set_project
@@ -45,6 +61,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :status, :deadline, :budget, :hourly_rate, :completed)
+    params.require(:project).permit(:name, :aim, :hourly_rate)
   end
 end

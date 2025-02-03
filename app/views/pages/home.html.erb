@@ -1,2 +1,36 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-container">
+  <header class="home-header">
+    <div class="home-logo">
+      <%= image_tag "lancelot.png", alt: "Lancelot Logo" %>
+    </div>
+    <h1 class="home-title">Welcome to Lancelot</h1>
+    <p class="home-description">
+      Lancelot is a powerful freelancing tool that helps you manage your clients, projects, and timesheets.
+    </p>
+    <div class="home-actions">
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-primary" %>
+    </div>
+  </header>
+
+  <div class="home-features">
+    <div class="home-feature">
+      <i class="fas fa-clients"></i>
+      <h2>Clients</h2>
+      <p>Easily manage your clients and their projects.</p>
+      <%= link_to "View Clients", clients_path, class: "btn btn-outline-primary" %>
+    </div>
+    <div class="home-feature">
+      <i class="fas fa-projects"></i>
+      <h2>Projects</h2>
+      <p>Keep track of all your projects and their timesheets.</p>
+      <%= link_to "View Projects", projects_path, class: "btn btn-outline-primary" %>
+    </div>
+    <div class="home-feature">
+      <i class="fas fa-timesheets"></i>
+      <h2>Timesheets</h2>
+      <p>Efficiently manage your time and generate invoices.</p>
+      <%= link_to "View Timesheets", "/timesheets", class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+</div>
