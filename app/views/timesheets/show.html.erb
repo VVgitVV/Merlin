@@ -37,5 +37,7 @@
   </div>
   <%= link_to 'View project dashboard', client_project_path(@timesheet.project.client, @timesheet.project) %>
 
-
+  <%= link_to 'Create invoice',
+        generate_pdf_timesheet_path(@timesheet),
+        data: {turbo_method: :post} %>
 </div>
