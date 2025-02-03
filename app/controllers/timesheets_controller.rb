@@ -23,11 +23,13 @@ class TimesheetsController < ApplicationController
     end
   end
 
+  def generate_pdf
+  end
+
   private
 
   def set_project
     @client = Client.find(params[:client_id])
     @project = @client.projects.find(params[:project_id])
   end
-
 end
