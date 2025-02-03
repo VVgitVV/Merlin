@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
 
   def show
     # @project is set using set_project
+    @timestamp = Timestamp.new
   end
 
   def new
