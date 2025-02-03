@@ -23,6 +23,8 @@ class ProjectsController < ApplicationController
 
   def show
     # @project is set using set_project
+    @timestamp = Timestamp.new
+    @timesheet = Timesheet.new(project_id: params[:id])
   end
 
   def new
@@ -32,8 +34,10 @@ class ProjectsController < ApplicationController
   def create
     @project = @client.projects.new(project_params)
     if @project.save
+      # create timesheet
+      Timesheet.create(project: @project)
       redirect_to client_project_path(@client, @project),
-                  notice: 'Project was successfully created.'
+                notice: 'Project was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
