@@ -10,10 +10,11 @@ class TimestampsController < ApplicationController
 
   def create
     @timestamp = Timestamp.new
+    @timesheet = Timesheet.find(params[:timesheet_id])
     @timestamp.timesheet = @timesheet
     @timestamp.start_time = DateTime.now
-    if @timestamp.save
-      redirect_to client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp)
+    if @timestamp.save!
+      redirect_to timesheet_timestamp_path(@timesheet, @timestamp)
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,7 +23,8 @@ class TimestampsController < ApplicationController
   def stop
     @timestamp = Timestamp.find(params[:id])
     @timestamp.update(end_time: DateTime.now)
-    redirect_to new_client_project_timesheet_timestamp_path(@client, @project, @timesheet)
+    redirect_to new_timesheet_timestamp_path(@timesheet)
+    # redirect_to client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet)
   end
 
   def edit
@@ -32,15 +34,14 @@ class TimestampsController < ApplicationController
   def update
     @timestamp = Timestamp.find(params[:id])
     @timestamp.update(timestamp_params)
-    redirect_to client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp)
+    redirect_to timesheet_timestamp_path(@timesheet, @timestamp)
   end
 
   private
 
   def set_chained_instances
-    @client = Client.find(params[:client_id])
-    @project = Project.find(params[:project_id])
-    @timesheet = Timesheet.find(params[:timesheet_id])
+    @timesheet = Timesheet.find(params[:timesheet_id]) if params[:timesheet_id]
+    @project = @timesheet.project
   end
 
   def timestamp_params
