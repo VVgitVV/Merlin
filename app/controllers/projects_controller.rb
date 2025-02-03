@@ -32,6 +32,7 @@ class ProjectsController < ApplicationController
   def create
     @project = @client.projects.new(project_params)
     if @project.save
+      #create timesheet
       redirect_to client_project_path(@client, @project),
                   notice: 'Project was successfully created.'
     else
