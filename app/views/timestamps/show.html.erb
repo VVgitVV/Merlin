@@ -1,13 +1,13 @@
 <div class="container">
   <div class="stopwatch-container">
       <%= link_to 'Stop',
-        stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp),
+        stop_timesheet_timestamp_path(@timesheet, @timestamp),
         data: {turbo_method: :post},
         class: 'stopwatch' %>
   </div>
   <div class="stopwatch-form">
-    <%= render 'task_description', client: @client, project: @project, timesheet: @timesheet, timestamp: @timestamp %>
+    <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
   </div>
 
-  <%= link_to 'Back to timesheet', client_project_timesheet_path(@client, @project, @timesheet) %>
+  <%= link_to 'Back to timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
 </div>

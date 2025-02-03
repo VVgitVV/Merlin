@@ -2,7 +2,8 @@
   <div class="stopwatch-container">
     <%= simple_form_for [@timesheet, @timestamp] do |f| %>
       <%= f.submit 'Start', class: 'stopwatch' %>
-      <%= f.association :timesheet %>
     <% end %>
   </div>
+
+  <%= link_to 'Back to timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
 </div>
