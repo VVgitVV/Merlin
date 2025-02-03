@@ -1,5 +1,5 @@
 <div class="container mb-5">
-  <h1 class="ps-2"><%= @timesheet.title%></h1>
+  <h1 class="ps-2"><%= "#{@timesheet.project.name}<br>#{@timesheet.title}".html_safe %></h1>
 
   <table class="table table-striped">
     <thead>
@@ -29,6 +29,11 @@
       </tr>
     </tbody>
   </table>
-  <%= link_to 'Start stopwatch', new_timesheet_timestamp_path(@timesheet) %>
+  <!--<%= link_to 'Start stopwatch', new_timesheet_timestamp_path(@timesheet) %>-->
+  <div class="stopwatch-container">
+    <%= simple_form_for [@timesheet, @timestamp] do |f| %>
+      <%= f.submit 'Start', class: 'stopwatch' %>
+    <% end %>
+  </div>
   <%= link_to 'View project dashboard', client_project_path(@timesheet.project.client, @timesheet.project) %>
 </div>

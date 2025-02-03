@@ -11,6 +11,7 @@ class TimesheetsController < ApplicationController
   def show
     @timesheet = Timesheet.find(params[:id])
     @timestamps = @timesheet.timestamps.where.not(end_time: nil).order(:end_time)
+    @timestamp = Timestamp.new
   end
 
   def create
