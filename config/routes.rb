@@ -39,4 +39,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :questions, only: [:index, :create]
 end
