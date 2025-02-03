@@ -1,4 +1,5 @@
 <div class="container">
+  <p><em>Working hard on <%= @timesheet.project.name %>!</em></p>
   <div class="stopwatch-container">
       <%= link_to 'Stop',
         stop_timesheet_timestamp_path(@timesheet, @timestamp),
@@ -9,5 +10,4 @@
     <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
   </div>
 
-  <%= link_to 'Back to timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
 </div>
