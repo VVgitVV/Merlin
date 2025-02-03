@@ -20,8 +20,8 @@
             <td>
               <%= timestamp.task_description %>
               <!-- Edit link trigger -->
-              <div>
-                <p data-action="click->show-form#reveal">Edit</p> <i class="fa-solid fa-feather d-none"></i>
+              <div data-action="click->show-form#reveal">
+                <p class="d-none">Edit</p> <i class="fa-solid fa-feather"></i>
               </div>
             </td>
             <td>£<%= format('%.2f', timestamp.subtotal) %></td>
