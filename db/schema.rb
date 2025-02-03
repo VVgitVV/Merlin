@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_03_122843) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_03_170509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_03_122843) do
     t.datetime "updated_at", null: false
     t.boolean "archived", default: false
     t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "timesheet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["timesheet_id"], name: "index_invoices_on_timesheet_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -69,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_03_122843) do
   end
 
   add_foreign_key "clients", "users"
+  add_foreign_key "invoices", "timesheets"
   add_foreign_key "projects", "clients"
   add_foreign_key "timesheets", "projects"
   add_foreign_key "timestamps", "timesheets"

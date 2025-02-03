@@ -123,12 +123,16 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    docraptor (3.1.0)
+      typhoeus (~> 1.0, >= 1.0.1)
     dotenv (3.1.7)
     dotenv-rails (3.1.7)
       dotenv (= 3.1.7)
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
     execjs (2.10.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
@@ -288,6 +292,8 @@ GEM
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    typhoeus (1.4.1)
+      ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -324,6 +330,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  docraptor
   dotenv-rails
   faker
   font-awesome-sass (~> 6.1)

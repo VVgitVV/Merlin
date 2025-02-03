@@ -12,6 +12,7 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.find(params[:id])
     @timestamps = @timesheet.timestamps.where.not(end_time: nil).order(:end_time)
     @timestamp = Timestamp.new
+    @invoice = Invoice.create(timesheet: @timesheet)
   end
 
   def create

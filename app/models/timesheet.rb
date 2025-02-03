@@ -1,6 +1,7 @@
 class Timesheet < ApplicationRecord
   belongs_to :project
   has_many :timestamps
+  has_one :invoice
 
   def total
     count = 0
