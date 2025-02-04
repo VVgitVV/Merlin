@@ -1,3 +1,12 @@
+<div class="invoice">
+  <div class="invoice-details">
+    <h1><%= @user %> | Invoice for <%= @timesheet.title %></h1>
+    <p>Client: <%= @client.name %></p>
+    <p>Project: <%= @project.name %></p>
+    <% if @project.aim.present? %>
+      <p><% @project.aim %></p>
+    <% end %>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -29,3 +38,4 @@
   <%= link_to 'Create invoice',
           generate_pdf_timesheet_invoice_path(@timesheet, @invoice),
           data: {turbo_method: :post} %>
+</div>
