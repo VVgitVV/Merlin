@@ -1,0 +1,46 @@
+@keyframes horseriding {
+  0%{
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes horseriding-box {
+  0%{
+    transform: translateX(0%) translateX(0%) rotate(0deg);
+  }
+  20%{
+    transform: translateX(100%) translateX(0%) rotate(0deg);
+  }
+  40%{
+    transform: translateX(0%) translateX(100%) rotate(90deg);
+  }
+  60%{
+    transform: translateX(-100%) translateX(0%) rotate(90deg);
+  }
+  100%{
+    transform: translateX(0%) translateX(0%) rotate(0deg);
+  }
+
+}
+
+
+@keyframes expand {
+  0%{
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  0%{
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
