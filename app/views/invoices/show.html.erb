@@ -4,7 +4,7 @@
     <p>Client: <%= @client.name %></p>
     <p>Project: <%= @project.name %></p>
     <% if @project.aim.present? %>
-      <p><% @project.aim %></p>
+      <p><em><%= @project.aim %></em></p>
     <% end %>
   </div>
   <table class="table table-striped">
@@ -21,7 +21,7 @@
         <% unless timestamp.end_time.nil? || timestamp.hours == 0.0 %>
           <!--Create conditional with if timestamps.same_date, group together-->
           <tr>
-            <td><%= timestamp.date %></td>
+            <td><%= timestamp.invoice_date %></td>
             <td><%= timestamp.hours %></td>
             <td><%= timestamp.task_description %></td>
             <td>£<%= format('%.2f', timestamp.subtotal) %></td>
