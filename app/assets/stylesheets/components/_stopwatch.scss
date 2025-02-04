@@ -15,6 +15,8 @@
 }
 
 .stopwatch-motion {
-  background-image: asset-url("lancelot_motion.gif");
-  background-color: green;
+  background-image: asset-url("logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
