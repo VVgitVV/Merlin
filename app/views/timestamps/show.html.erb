@@ -4,7 +4,7 @@
       <%= link_to 'Stop',
         stop_timesheet_timestamp_path(@timesheet, @timestamp),
         data: {turbo_method: :post},
-        class: 'stopwatch' %>
+        class: 'stopwatch stopwatch-motion' %>
   </div>
   <div class="stopwatch-form">
     <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
