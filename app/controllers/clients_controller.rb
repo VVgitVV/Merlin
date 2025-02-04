@@ -1,5 +1,7 @@
 class ClientsController < ApplicationController
 
+  before_action :set_client, only: %i[edit update archive restore]
+
 
   def update
     respond_to do |format|
@@ -14,7 +16,7 @@ class ClientsController < ApplicationController
   end
 
 
-  before_action :set_client, only: [:edit, :update, :archive, :restore]
+
 
   def index
     # @clients = Client.active

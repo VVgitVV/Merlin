@@ -61,8 +61,8 @@ client_names.each_with_index do |name, index|
       start_date = Faker::Date.backward(days: rand(30..90))
       end_date = start_date + rand(7..30) # Timesheets can last from 1 week to 1 month
       timesheet = Timesheet.create!(
-        start_date: start_date,
-        end_date: end_date,
+        # start_date: start_date,
+        # end_date: end_date,
         project: project
       )
 
