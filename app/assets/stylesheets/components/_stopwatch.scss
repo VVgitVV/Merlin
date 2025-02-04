@@ -3,13 +3,13 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 1px solid $red;
   display: flex;
   font-family: $font-header;
   font-size: 24px;
   text-decoration: none;
   color: $red;
   // text-shadow: 1px 1px 2px $primary;
+  filter: drop-shadow(2px 2px 6px rgba(27, 27, 58, 0.5));
   a {
     text-decoration: none;
   };
@@ -20,20 +20,41 @@
   justify-content: center;
 }
 
+// .stopwatch-motion-container {
+//   // width: 100%;
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .stop-button {
+//   width: 100%;
+
+// }
+
 .stopwatch-motion {
+  // animation: spin 5s infinite forwards;
+  // animation: horseriding-box 3s infinite forwards;
+  border: 0.1px solid $red;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(125, 1, 1, 0.2)), asset-url("lancelot_motion.gif");
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(125, 1, 1, 0.2)), asset-url("lancelot_motion.gif");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  &:hover {
+    animation: expand 0.5s forwards;
+  }
 }
 
 .stopped {
+  border: 0.1px solid $gold;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(226, 192, 79, 0.2)), asset-url("lancelot_stopped.png");
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(226, 192, 79, 0.2)), asset-url("lancelot_stopped.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  &:hover {
+    animation: expand 0.5s forwards;
+  }
 }
