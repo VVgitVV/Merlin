@@ -1,5 +1,22 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:edit, :update, :archive, :restore]
+
+  before_action :set_client, only: %i[edit update archive restore]
+
+
+  def update
+    respond_to do |format|
+      if @client.update(client_params)
+        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.json { render :show, status: :ok, location: @client }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
 
   def index
     # @clients = Client.active
@@ -29,10 +46,14 @@ class ClientsController < ApplicationController
   end
 
   def update
-    if @client.update(client_params)
-      redirect_to clients_path, notice: 'Client was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @client.update(client_params)
+        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.json { render :show, status: :ok, location: @client }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -46,13 +67,27 @@ class ClientsController < ApplicationController
     redirect_to clients_path, notice: 'Client was restored successfully.'
   end
 
+
   private
 
   def set_client
     @client = Client.find(params[:id])
   end
 
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.html { redirect_to clients_path, alert: 'Client not found.' }
+      format.json { render json: { error: 'Client not found' }, status: :not_found }
+    end
+
+
+
+
+
+
   def client_params
     params.require(:client).permit(:name, :description)
+
   end
+
 end

@@ -66,6 +66,18 @@ class ProjectsController < ApplicationController
     redirect_to client_project_path(@client, @project), notice: 'Project marked as completed.'
   end
 
+  def edit
+
+  end
+
+  def update
+    if @project.update(project_params)
+      redirect_to client_project_path(@client, @project), notice: 'Project was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def set_client
