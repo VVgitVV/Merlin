@@ -1,10 +1,12 @@
 <div class="container">
   <p><em>Working hard on <%= @timesheet.project.name %>!</em></p>
 
-  <%= render "timestamps/stop_button", timesheet: @timesheet, timestamp: @timestamp %>
+  <div class="stopwatch-motion-container">
+    <%= render "timestamps/stop_button", timesheet: @timesheet, timestamp: @timestamp %>
 
-  <div class="stopwatch-form">
-    <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
+    <div class="stopwatch-form">
+      <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
+    </div>
   </div>
 
 </div>
