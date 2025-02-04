@@ -1,7 +1,10 @@
 <div class="container">
-  <%= simple_form_for [@client, @project, @timesheet, @timestamp] do |f| %>
-    <%= f.submit 'Start', class: 'btn btn-outline-success' %>
-  <% end %>
+  <p><em>Start work on <%= @timesheet.project.name %>!</em></p>
+  <div class="stopwatch-container">
+    <%= simple_form_for [@timesheet, @timestamp] do |f| %>
+      <%= f.submit 'Start', class: 'stopwatch' %>
+    <% end %>
+  </div>
+  <%= link_to 'View timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
 
-  <%= link_to 'Back to timesheet', client_project_timesheet_path(@client, @project, @timesheet) %>
 </div>

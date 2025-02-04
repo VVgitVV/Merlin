@@ -1,10 +1,13 @@
 <div class="container">
-  <%= link_to 'Stop',
-    stop_client_project_timesheet_timestamp_path(@client, @project, @timesheet, @timestamp),
-    data: {turbo_method: :post},
-    class: 'btn btn-outline-dark' %>
+  <p><em>Working hard on <%= @timesheet.project.name %>!</em></p>
+  <div class="stopwatch-container">
+      <%= link_to 'Stop',
+        stop_timesheet_timestamp_path(@timesheet, @timestamp),
+        data: {turbo_method: :post},
+        class: 'stopwatch' %>
+  </div>
+  <div class="stopwatch-form">
+    <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
+  </div>
 
-  <%= render 'task_description', client: @client, project: @project, timesheet: @timesheet, timestamp: @timestamp %>
-
-  <%= link_to 'Back to timesheet', client_project_timesheet_path(@client, @project, @timesheet) %>
 </div>

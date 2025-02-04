@@ -1,13 +1,29 @@
-<h1>Timesheets for <%= @project.name %></h1>
+<div class="container">
+  <h1>Timesheets</h1>
 
-<ul>
-<% @timesheets.each do |timesheet| %>
-  <!--Need to include all levels of nesting-->
-  <li><%= link_to timesheet.start_date.strftime('%B %Y'), client_project_timesheet_path(@client, @project, timesheet) %></li>
-<% end %>
-</ul>
+  <!--Do we even want this?-->
+  <!--
+  <div data-controller="show-form">
+    <div data-action="click->show-form#reveal" class="btn btn-outline-dark">
+      New timesheet
+    </div>
+    <div data-show-form-target="form" class="d-none">
+      <%= simple_form_for @timesheet do |f| %>
+        <%= f.association :project %>
+        <%= f.submit 'Create' %>
+      <% end %>
+    </div>
+  </div>
+  -->
 
-<!--Need to include all levels of nesting-->
-<%= simple_form_for [@client, @project, @timesheet] do |f| %>
-  <%= f.submit 'Create a new timesheet' %>
-<% end %>
+  <ul>
+  <% @timesheets.each do |timesheet| %>
+    <!--Need to include all levels of nesting-->
+    <li><%= link_to timesheet.title,
+        client_project_timesheet_path(timesheet.project.client, timesheet.project, timesheet) %>
+    </li>
+  <% end %>
+  </ul>
+
+
+</div>
