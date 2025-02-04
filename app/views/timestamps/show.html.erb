@@ -1,11 +1,8 @@
 <div class="container">
   <p><em>Working hard on <%= @timesheet.project.name %>!</em></p>
-  <div class="stopwatch-container">
-      <%= link_to 'Stop',
-        stop_timesheet_timestamp_path(@timesheet, @timestamp),
-        data: {turbo_method: :post},
-        class: 'stopwatch' %>
-  </div>
+
+  <%= render "timestamps/stop_button", timesheet: @timesheet, timestamp: @timestamp %>
+
   <div class="stopwatch-form">
     <%= render 'task_description', timesheet: @timesheet, timestamp: @timestamp %>
   </div>

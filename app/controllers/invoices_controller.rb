@@ -2,9 +2,12 @@ class InvoicesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show generate_pdf]
 
   def show
+    @user = "#{current_user.first_name} #{current_user.last_name}"
     @timesheet = Timesheet.find(params[:timesheet_id])
     @timestamps = @timesheet.timestamps.where.not(end_time: nil).order(:end_time)
     @invoice = Invoice.find(params[:id])
+    @project = @timesheet.project
+    @client = @project.client
   end
 
   def generate_pdf
@@ -42,5 +45,4 @@ class InvoicesController < ApplicationController
       puts error.backtrace[0..3].join("\n")
     end
   end
-
 end

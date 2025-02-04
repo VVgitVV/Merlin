@@ -41,11 +41,6 @@
   <% end %>
   </div>
 
-  <!-- Adding stopwatch button -->
-  <div class="stopwatch-container">
-    <%= simple_form_for [@project.timesheets.last, @timestamp] do |f| %>
-      <%= f.submit 'Start', class: 'stopwatch' %>
-    <% end %>
-  </div>
+  <%= render "timestamps/start_button", timesheet: @project.timesheets.last, timestamp: @timestamp %>
 
 </div>
