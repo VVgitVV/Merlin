@@ -25,4 +25,6 @@ Rails.application.routes.draw do
       resources :timesheets, except: %i[index destroy]
     end
   end
+  resources :questions, only: [:index, :create]
+
 end
