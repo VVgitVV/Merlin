@@ -1,4 +1,4 @@
-<div class="container mb-5">
+<div class="container mb-5 timesheet">
   <h1 class="ps-2"><%= "#{@timesheet.project.name}<br>#{@timesheet.title}".html_safe %></h1>
   <!-- Make table partial -->
   <table class="table table-striped">
@@ -24,7 +24,13 @@
                 <p class="d-none">Edit</p> <i class="fa-solid fa-feather"></i>
               </div>
             </td>
-            <td>£<%= format('%.2f', timestamp.subtotal) %></td>
+            <td>
+              £<%= format('%.2f', timestamp.subtotal) %>
+                <%= link_to ("<i class='fa-solid fa-xmark'></i>").html_safe,
+                  timesheet_timestamp_path(@timesheet, timestamp),
+                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+                %>
+            </td>
           </tr>
           <tr data-show-form-target="form" class="d-none">
             <td><%= timestamp.date %></td>

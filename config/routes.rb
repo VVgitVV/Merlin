@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         post "generate_pdf"
       end
     end
-    resources :timestamps, except: %i[index destroy] do
+    resources :timestamps, except: %i[index] do
       member do
         post "stop"
       end

@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Projects for <%= @client.name %></h1>
 
-  <!-- Show full client details only on the active projects page -->
+  <!-- ✅ Show full client details only on the active projects page -->
   <% unless params[:archived] == "true" %>
     <div class="client-description mb-3">
       <h3>About <%= @client.name %></h3>
@@ -10,8 +10,7 @@
     </div>
   <% end %>
 
-
-  <!-- Archive & Active Toggle Buttons -->
+  <!-- ✅ Navigation Buttons -->
   <div class="mb-3">
     <% unless params[:archived] == "true" %>
       <%= link_to "Back to Clients", clients_path, class: "btn btn-secondary" %>
@@ -22,10 +21,27 @@
     <% end %>
   </div>
 
-  <!-- Projects List -->
-  <div class="projects-list">
+  <!-- ✅ Project Cards Layout -->
+  <div class="row">
     <% @projects.each do |project| %>
-      <%= render partial: 'projects/project_card', locals: { project: project } %>
+      <div class="col-md-4 col-sm-6 mb-4">
+
+        <!-- ✅ Clickable Project Card -->
+        <div class="card shadow-sm">
+          <%= link_to client_project_path(@client, project), class: "stretched-link text-decoration-none text-dark" do %>
+            <div class="card-body">
+              <h5 class="card-title"><%= project.name %></h5>
+              <p class="card-text"><%= truncate(project.aim, length: 80) %></p>
+              <p class="text-muted small">Hourly Rate: £<%= format('%.2f', project.hourly_rate) %>/hour</p>
+              <p class="text-muted small">
+                Status: <strong><%= project.completed? ? "Completed ✅" : "In Progress ⏳" %></strong>
+              </p>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
     <% end %>
   </div>
+
 </div>
