@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_client
-  before_action :set_project, only: [:show, :edit, :update, :archive, :restore]
+  before_action :set_project, only: [:show, :edit, :update, :archive, :restore, :complete, :start_tracking]
 
   def index
     if @client
@@ -43,6 +43,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def start_tracking
+    unless @project.completed?
+      @project.update(completed: false) # Ensure status is NOT completed
+    end
+    redirect_to client_project_path(@client, @project)
+  end
+
   def archive
     @project = Project.find(params[:id])
     @project.update(archived: true)
@@ -52,6 +59,11 @@ class ProjectsController < ApplicationController
   def restore
     @project.update(archived: false)
     redirect_to client_projects_path(@client), notice: 'Project was restored successfully.'
+  end
+
+  def complete
+    @project.toggle_completion!
+    redirect_to client_project_path(@client, @project), notice: 'Project marked as completed.'
   end
 
   private

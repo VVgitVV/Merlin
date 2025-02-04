@@ -6,4 +6,8 @@ class Project < ApplicationRecord
   validates :name, :hourly_rate, presence: true
 
   scope :active, -> { where(archived: false) }
+
+  def toggle_completion!
+    update(completed: !completed)
+  end
 end
