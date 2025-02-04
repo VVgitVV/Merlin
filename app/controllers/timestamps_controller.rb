@@ -34,17 +34,12 @@ class TimestampsController < ApplicationController
   def update
     @timestamp = Timestamp.find(params[:id])
     if @timestamp.update(timestamp_params)
+      # getting update method to work from both the timesheet show and the timestamp show
       redirect_to params[:redirect_to] || client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet)
     else
       render :edit, status: :unprocessable_entity
     end
   end
-
-  # def update
-  #   @timestamp = Timestamp.find(params[:id])
-  #   @timestamp.update(timestamp_params)
-  #   redirect_to timesheet_timestamp_path(@timesheet, @timestamp)
-  # end
 
   private
 
