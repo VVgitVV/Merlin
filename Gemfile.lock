@@ -131,14 +131,11 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
-
     et-orbi (1.2.11)
       tzinfo
-    event_stream_parser (1.0.0)
-
     ethon (0.16.0)
       ffi (>= 1.15.0)
-
+    event_stream_parser (1.0.0)
     execjs (2.10.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
