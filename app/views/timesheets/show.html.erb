@@ -49,7 +49,7 @@
 
   <div class="stopwatch-container">
     <%= simple_form_for [@timesheet, @timestamp] do |f| %>
-      <%= f.submit 'Start', class: 'stopwatch' %>
+      <%= f.submit 'Start', class: 'stopwatch stopped' %>
     <% end %>
   </div>
 

@@ -15,7 +15,14 @@
 }
 
 .stopwatch-motion {
-  background-image: asset-url("logo.png");
+  background-image: asset-url("lancelot_motion.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.stopped {
+  background-image: asset-url("lancelot_stopped.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

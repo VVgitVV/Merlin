@@ -2,7 +2,7 @@
   <p><em>Start work on <%= @timesheet.project.name %>!</em></p>
   <div class="stopwatch-container">
     <%= simple_form_for [@timesheet, @timestamp] do |f| %>
-      <%= f.submit 'Start', class: 'stopwatch' %>
+      <%= f.submit 'Start', class: 'stopwatch stopped' %>
     <% end %>
   </div>
   <%= link_to 'View timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
