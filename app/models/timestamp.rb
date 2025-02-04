@@ -1,5 +1,6 @@
 class Timestamp < ApplicationRecord
   belongs_to :timesheet
+  has_one :project, through: :timesheet
 
   def date
     end_time&.strftime('%m/%d/%Y %H:%M')
