@@ -14,25 +14,38 @@
   <% else %>
     <p>No timesheets available for this project.</p>
   <% end %>
-  <!--Adding new timesheet button-->
+
+  <!-- Adding new timesheet button -->
   <%= simple_form_for [@client, @project, @timesheet] do |f| %>
     <%= f.submit 'New timesheet', class: 'btn btn-success' %>
   <% end %>
 
-  <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn btn-primary' %>
-  <%= link_to 'All Projects', projects_path, class: 'btn btn-secondary' %>
-  <%= link_to "Projects for #{@client.name}", client_projects_path(@client), class: 'btn btn-secondary' %>
 
+  <!-- ✅ Project Completion Section (NEW) -->
+  <div class="completion-status mb-3 d-flex gap-2 flex-wrap">
+    <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn btn-primary' %>
+    <%= link_to "Projects for #{@client.name}", client_projects_path(@client), class: 'btn btn-secondary' %>
+    <% if @project.completed? %>
+      <p class="text-success"><strong>✅ Project Completed</strong></p>
+    <% else %>
+      <%= button_to "Mark as Completed", complete_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+  <!-- Archive/Restore Buttons -->
+  <div class="d-flex gap-2 flex-wrap">
   <% if @project.archived? %>
     <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
   <% else %>
     <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
   <% end %>
+  </div>
 
-  <!--Adding stopwatch button-->
+  <!-- Adding stopwatch button -->
   <div class="stopwatch-container">
     <%= simple_form_for [@project.timesheets.last, @timestamp] do |f| %>
       <%= f.submit 'Start', class: 'stopwatch' %>
     <% end %>
   </div>
+
 </div>

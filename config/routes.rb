@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :projects, except: :destroy do
       patch :archive, on: :member
       patch :restore, on: :member
+      patch :complete, on: :member
+      patch :start_tracking, on: :member
 
       resources :timesheets, except: %i[index destroy]
     end
