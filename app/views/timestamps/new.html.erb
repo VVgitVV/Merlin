@@ -1,10 +1,6 @@
 <div class="container">
   <p><em>Start work on <%= @timesheet.project.name %>!</em></p>
-  <div class="stopwatch-container">
-    <%= simple_form_for [@timesheet, @timestamp] do |f| %>
-      <%= f.submit 'Start', class: 'stopwatch stopped' %>
-    <% end %>
-  </div>
+  <%= render "timestamps/start_button", timesheet: @timesheet, timestamp: @timestamp %>
   <%= link_to 'View timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
 
 </div>

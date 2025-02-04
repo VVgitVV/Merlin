@@ -47,11 +47,7 @@
     </tbody>
   </table>
 
-  <div class="stopwatch-container">
-    <%= simple_form_for [@timesheet, @timestamp] do |f| %>
-      <%= f.submit 'Start', class: 'stopwatch stopped' %>
-    <% end %>
-  </div>
+  <%= render "timestamps/start_button", timesheet: @timesheet, timestamp: @timestamp %>
 
   <%= link_to 'Project dashboard', client_project_path(@timesheet.project.client, @timesheet.project) %>
   <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice) %>
