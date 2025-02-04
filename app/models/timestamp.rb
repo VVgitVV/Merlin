@@ -6,6 +6,10 @@ class Timestamp < ApplicationRecord
     end_time&.strftime('%m/%d/%Y %H:%M')
   end
 
+  def invoice_date
+    end_time&.strftime('%m/%d/%Y')
+  end
+
   def hours
     return 0 if end_time.nil?
 

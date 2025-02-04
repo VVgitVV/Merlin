@@ -1,0 +1,5 @@
+  <div class="stopwatch-container">
+    <%= simple_form_for [timesheet, timestamp] do |f| %>
+      <%= f.submit 'Go!', class: 'stopwatch stopped' %>
+    <% end %>
+  </div>
