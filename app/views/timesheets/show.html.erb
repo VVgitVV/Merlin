@@ -21,7 +21,7 @@
           <tr data-show-form-target="row">
             <td><%= timestamp.date %></td>
             <td><%= timestamp.hours %></td>
-            <td>
+            <td class="d-flex justify-content-around">
               <%= timestamp.task_description %>
               <!-- Edit link trigger -->
               <div data-action="click->show-form#reveal">
@@ -37,6 +37,8 @@
                   data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
                 %>
                 -->
+            </td>
+            <td class="">
               <%= link_to "X",
                 timesheet_timestamp_path(@timesheet, timestamp),
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},
@@ -50,7 +52,7 @@
             <td>
               <%= simple_form_for [@timesheet, timestamp] do |f| %>
                 <%= f.input :task_description, label: false %>
-                <%= f.submit 'Save', class: "btn red-button"%>
+                <%= f.submit 'Save', class: "btn blue-button"%>
               <% end %>
             </td>
             <td>£<%= format('%.2f', timestamp.subtotal) %></td>
