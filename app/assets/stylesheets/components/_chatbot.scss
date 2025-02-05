@@ -38,14 +38,15 @@
 
   .user-question {
     align-self: flex-start;
-    //background: #{$blue};
-    //color: #{$neutral-light};
+    background: $gold;
+    color: $primary;
   }
 
   .ai-answer {
     align-self: flex-end;
     //background: #{$neutral-medium};
     color: #{$white};
+    background-color: $primary;
   }
 
   #new_question {
