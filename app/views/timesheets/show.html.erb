@@ -2,7 +2,7 @@
 <div class="container mb-5 timesheet">
   <div class="d-flex justify-content-between">
     <h1 class="ps-2"><%= "#{@timesheet.project.name}<br>#{@timesheet.title}".html_safe %></h1>
-    <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice) %>
+    <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice), class: "btn red-button w-auto align-self-start" %>
   </div>
   <!-- Make table partial -->
   <table class="table">
