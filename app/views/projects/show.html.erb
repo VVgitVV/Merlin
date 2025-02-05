@@ -40,7 +40,7 @@
     <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
   <% end %>
   </div>
-
-  <%= render "timestamps/start_button", timesheet: @project.timesheets.last, timestamp: @timestamp %>
-
+  <% if @project.timesheets.present? %>
+    <%= render "timestamps/start_button", timesheet: @project.timesheets.last, timestamp: @timestamp %>
+  <% end %>
 </div>

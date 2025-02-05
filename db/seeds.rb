@@ -1,90 +1,54 @@
-require 'faker'
+puts "Cleaning database"
 
-# Clear existing data
+Invoice.destroy_all
 Timestamp.destroy_all
 Timesheet.destroy_all
 Project.destroy_all
 Client.destroy_all
 User.destroy_all
 
-# Create a user
 user = User.create!(
-  email: "developer@example.com",
-  password: "password123", # Replace this with secure password handling
-  username: "freelance_dev",
-  first_name: "John",
-  last_name: "Doe"
+  first_name: "Guinevere",
+  last_name: "Jones",
+  username: "guinevere",
+  email: "guinevere@arthurian.com",
+  password: "password123",
+  password_confirmation: "password123"
 )
 
-# Client names as requested
-client_names = ["Percy", "Logan", "Vanessa", "Carter", "Rebecca"]
-
-# Define project names per client
-project_names = [
-  ["Mobile App Development", "Cloud Migration", "Data Analytics Setup", "Website SEO Optimization", "Backend API Development"],
-  ["Social Media Dashboard", "Online Marketplace", "User Authentication System", "AI Chatbot Integration", "Cybersecurity Enhancement"],
-  ["E-learning Platform", "E-commerce Redesign", "HR Management System", "Real Estate Listings", "Automated Booking System"],
-  ["Financial Forecasting Tool", "Stock Trading App", "Enterprise CRM System", "Healthcare Patient Portal", "Freelancer Time Tracking App"],
-  ["Smart Home Automation", "Video Streaming Platform", "Gaming API Development", "AR Shopping Experience", "Digital Marketing Suite"]
+clients_data = [
+  { name: "Acme Corp", description: "A large e-commerce platform looking for a full-stack web solution." },
+  { name: "BetaSoft", description: "A SaaS startup needing a custom dashboard and API integration." },
+  { name: "Gamma Designs", description: "A creative agency requiring a portfolio and client management system." }
 ]
 
-# Create Clients & Projects
-clients = []
+clients = clients_data.map do |client_data|
+  user.clients.create!(client_data)
+end
 
-client_names.each_with_index do |name, index|
-  client = Client.new(
-    name: name,
-    description: "Client #{name} specializes in #{Faker::Company.industry}.",
-    user: user
-  )
+projects_data = [
+  [
+    { name: "E-Commerce Storefront", aim: "Develop a modern, responsive online store.", hourly_rate: 75.0 },
+    { name: "Payment Gateway Integration", aim: "Implement Stripe and PayPal for seamless transactions.", hourly_rate: 80.0 },
+    { name: "Admin Dashboard", aim: "Create an admin panel for managing inventory and users.", hourly_rate: 85.0 }
+  ],
+  [
+    { name: "SaaS Dashboard", aim: "Build an interactive analytics dashboard.", hourly_rate: 90.0 },
+    { name: "API Development", aim: "Develop a RESTful API for third-party integrations.", hourly_rate: 95.0 },
+    { name: "User Authentication", aim: "Implement secure authentication with OAuth and JWT.", hourly_rate: 85.0 }
+  ],
+  [
+    { name: "Portfolio Website", aim: "Create a visually stunning portfolio site.", hourly_rate: 70.0 },
+    { name: "Client CRM", aim: "Develop a lightweight CRM to manage clients and leads.", hourly_rate: 80.0 },
+    { name: "Blog Engine", aim: "Build a custom blog system with CMS features.", hourly_rate: 75.0 }
+  ]
+]
 
-  if client.save
-    puts "✅ Created Client: #{client.name}"
-  else
-    puts "❌ Failed to create Client: #{client.name}"
-    puts client.errors.full_messages # 🔍 Print errors if save fails
-  end
-  clients << client
 
-  # Create 5 projects for each client
-  project_names[index].each do |project_name|
-    project = Project.create!(
-      name: project_name,
-      aim: Faker::Lorem.sentence(word_count: 10),
-      hourly_rate: rand(40..100), # Random hourly rate between $40-$100
-      completed: [true, false].sample,
-      client: client
-    )
-
-    # Create 3 timesheets for each project
-    3.times do
-      start_date = Faker::Date.backward(days: rand(30..90))
-      end_date = start_date + rand(7..30) # Timesheets can last from 1 week to 1 month
-      timesheet = Timesheet.create!(
-        # start_date: start_date,
-        # end_date: end_date,
-        project: project
-      )
-
-      # Create 5 timestamps per timesheet
-      5.times do
-        start_time = Faker::Time.between(from: start_date, to: end_date).to_time
-        end_time = start_time + rand(1..5) * 3600 # Work sessions last between 1-5 hours
-        Timestamp.create!(
-          start_time: start_time,
-          end_time: end_time,
-          task_description: Faker::Hacker.say_something_smart,
-          timesheet: timesheet
-        )
-      end
-    end
+clients.each_with_index do |client, index|
+  projects_data[index].each do |project_data|
+    client.projects.create!(project_data)
   end
 end
 
-puts "✅ Seeding completed successfully!"
-puts "📌 Created #{User.count} user"
-puts "📌 Created #{Client.count} clients"
-puts "📌 Created #{Project.count} projects"
-puts "📌 Created #{Timesheet.count} timesheets"
-puts "📌 Created #{Timestamp.count} timestamps"
-puts "📌 All data is associated correctly"
+puts "Seed data successfully created!"
