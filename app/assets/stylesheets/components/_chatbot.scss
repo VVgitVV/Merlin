@@ -1,5 +1,8 @@
+@use "config/colors" as *;
+@import "config/colors";
+
 .chatbot {
-  background: white;
+  background: $white;
   margin-top: 9px;
   height: calc(100vh - 75px);
   display: flex;
@@ -8,7 +11,7 @@
   flex-grow: 1;
 
   h1 {
-    border-bottom: 1px solid $gray-200;
+    //border-bottom: 1px solid #{$neutral-medium};
     margin-bottom: 0;
     padding: 1rem;
   }
@@ -35,17 +38,19 @@
 
   .user-question {
     align-self: flex-start;
-    background: $blue;
-    color: $light-gray;
+    background: $gold;
+    color: $primary;
   }
 
   .ai-answer {
     align-self: flex-end;
-    background: $gray-200;
+    //background: #{$neutral-medium};
+    color: #{$white};
+    background-color: $primary;
   }
 
   #new_question {
-    border-top: 1px solid $gray-200;
+    //border-top: 1px solid #{$neutral-medium};
     padding: 1rem;
 
     .form-group {

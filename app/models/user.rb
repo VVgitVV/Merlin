@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :clients
   has_many :questions
+  has_many :projects, through: :clients
+  has_many :timesheets, through: :projects
 
   validates :first_name, :last_name, :username, presence: true
 end

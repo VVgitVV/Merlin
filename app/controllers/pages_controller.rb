@@ -2,11 +2,10 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    @client = Client.new(name: "Placeholder Client")
-    @project = Project.new(name: "Placeholder Project")
     @quote = Rails.cache.fetch('daily_quote', expires_in: 24.hours) do
       fetch_daily_quote
     end
+    redirect_to dashboard_path if user_signed_in?
   end
 
   private
