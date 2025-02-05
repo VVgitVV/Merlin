@@ -52,13 +52,28 @@ clients.each_with_index do |client, index|
     # Create a timesheet for the project
     timesheet = Timesheet.create!(project: project)
 
-    # Create 5 timestamps for the timesheet
-    5.times do |i|
+    # Create 5 timestamps for the timesheet with random durations and unique task descriptions
+    5.times do
+      # Generate random start and end times with different durations
+      start_time = DateTime.now.beginning_of_day + rand(1..6).hours + rand(0..59).minutes
+      duration = rand(30..180)  # Duration between 30 minutes and 3 hours
+      end_time = start_time + (duration / 60.0).hours
+
+      # Unique task description
+      task_descriptions = [
+        "Initial setup and configuration",
+        "API integration and testing",
+        "UI/UX design improvements",
+        "Database schema migration",
+        "Bug fixing and optimization"
+      ]
+      task_description = task_descriptions.sample
+
       Timestamp.create!(
         timesheet: timesheet,
-        start_time: DateTime.now.beginning_of_day + i.hours,
-        end_time: DateTime.now.beginning_of_day + (i + 1).hours,
-        task_description: "Task #{i + 1} for project #{project.name}"
+        start_time: start_time,
+        end_time: end_time,
+        task_description: task_description
       )
     end
   end
