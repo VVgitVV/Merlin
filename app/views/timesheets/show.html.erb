@@ -30,6 +30,11 @@
             </td>
             <td>
               £<%= format('%.2f', timestamp.subtotal) %>
+              <%= link_to "X",
+                timesheet_timestamp_path(@timesheet, timestamp),
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},
+                class: "x-button"
+              %>
 
                 <!--
                 <%= link_to ("<i class='fa-solid fa-xmark'></i>").html_safe,
@@ -39,11 +44,7 @@
                 -->
             </td>
             <td class="">
-              <%= link_to "X",
-                timesheet_timestamp_path(@timesheet, timestamp),
-                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},
-                class: "x-button"
-              %>
+
             </td>
           </tr>
           <tr data-show-form-target="form" class="d-none">
