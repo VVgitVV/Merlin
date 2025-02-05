@@ -1,5 +1,8 @@
 <%= render "shared/lancelot_nav" %>
-<div class="container">
+<div class="clients-container">
+
+
+
   <h1>Clients</h1>
 
   <!-- ✅ New Client Button -->
@@ -15,7 +18,7 @@
       <div class="col-md-4 col-sm-6 mb-4">
 
         <!-- ✅ Client Card (Clickable) -->
-        <div class="card shadow-sm">
+        <div class="client-card card">
           <%= link_to client_projects_path(client), class: "stretched-link text-decoration-none text-dark" do %>
             <div class="card-body">
               <h5 class="card-title"><%= client.name %></h5>
@@ -25,11 +28,11 @@
         </div>
 
         <!-- ✅ Archive Button (Placed Directly Below the Card) -->
-        <div class="d-flex justify-content-starts mt-2">
+        <div class="archive-button d-flex justify-content-starts mt-2">
           <% if client.archived? %>
-            <%= button_to "Restore", restore_client_path(client), method: :patch, class: "btn btn-success btn-sm" %>
+            <%= button_to "Restore", restore_client_path(client), method: :patch, class: "btn btn-success" %>
           <% else %>
-            <%= button_to "Archive", archive_client_path(client), method: :patch, class: "btn btn-danger btn-sm" %>
+            <%= button_to "Archive", archive_client_path(client), method: :patch, class: "btn btn-danger" %>
           <% end %>
         </div>
 

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="projects-container">
   <h1>Projects for <%= @client.name %></h1>
 
   <!-- ✅ Show full client details only on the active projects page -->
@@ -11,7 +11,7 @@
   <% end %>
 
   <!-- ✅ Navigation Buttons -->
-  <div class="mb-3">
+  <div class="btn-rounded mb-3">
     <% unless params[:archived] == "true" %>
       <%= link_to "Back to Clients", clients_path, class: "btn btn-secondary" %>
       <%= link_to 'New Project', new_client_project_path(@client), class: 'btn btn-success' %>
@@ -27,13 +27,13 @@
       <div class="col-md-4 col-sm-6 mb-4">
 
         <!-- ✅ Clickable Project Card -->
-        <div class="card shadow-sm">
+        <div class="project-card card">
           <%= link_to client_project_path(@client, project), class: "stretched-link text-decoration-none text-dark" do %>
             <div class="card-body">
               <h5 class="card-title"><%= project.name %></h5>
               <p class="card-text"><%= truncate(project.aim, length: 80) %></p>
               <p class="text-muted small">Hourly Rate: £<%= format('%.2f', project.hourly_rate) %>/hour</p>
-              <p class="text-muted small">
+              <p class="project-status">
                 Status: <strong><%= project.completed? ? "Completed ✅" : "In Progress ⏳" %></strong>
               </p>
             </div>
