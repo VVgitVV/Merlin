@@ -44,7 +44,6 @@ projects_data = [
   ]
 ]
 
-
 clients.each_with_index do |client, index|
   projects_data[index].each do |project_data|
     client.projects.create!(project_data)
