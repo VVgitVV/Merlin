@@ -25,12 +25,21 @@
               <%= timestamp.task_description %>
               <!-- Edit link trigger -->
               <div data-action="click->show-form#reveal">
-                <p class="d-none">Edit</p> <i class="fa-solid fa-feather"></i>
+                <p class="edit-txt"><em>Edit</em></p> <i class="fa-solid fa-feather d-none"></i>
               </div>
             </td>
             <td>
               £<%= format('%.2f', timestamp.subtotal) %>
+
+                <!--
                 <%= link_to ("<i class='fa-solid fa-xmark'></i>").html_safe,
+                  timesheet_timestamp_path(@timesheet, timestamp),
+                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+                %>
+                -->
+            </td>
+            <td class="x-button table-light">
+              <%= link_to "X",
                   timesheet_timestamp_path(@timesheet, timestamp),
                   data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
                 %>
@@ -42,7 +51,7 @@
             <td>
               <%= simple_form_for [@timesheet, timestamp] do |f| %>
                 <%= f.input :task_description, label: false %>
-                <%= f.submit 'Save'%>
+                <%= f.submit 'Save', class: "btn red-button"%>
               <% end %>
             </td>
             <td>£<%= format('%.2f', timestamp.subtotal) %></td>
