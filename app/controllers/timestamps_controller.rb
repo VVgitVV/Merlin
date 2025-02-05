@@ -9,6 +9,7 @@ class TimestampsController < ApplicationController
   end
 
   def create
+    Timestamp.last.update(end_time: DateTime.now) if Timestamp.last.end_time.nil?
     @timestamp = Timestamp.new
     @timesheet = Timesheet.find(params[:timesheet_id])
     @timestamp.timesheet = @timesheet
