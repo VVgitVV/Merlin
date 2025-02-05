@@ -1,5 +1,29 @@
-// Colors
-$primary: #1B1B3A;
-$white: #F0F0F0;
-$gold: #E2C04F;
-$red: #7D0101;
+// Base colors
+$white: #FFFFFF;
+$black: #000000;
+
+// Core color palette
+$primary-text: #1B1B3A;      // Navy blue
+$background-light: #F0F0F0;  // Smoke white
+$accent-gold: #E2C04F;       // Gold
+$emphasis-red: #7D0101;      // Deep red
+
+// Extended neutral palette
+$neutral-dark: #333333;
+$neutral-medium: #666666;
+$neutral-light: #CCCCCCCC;
+$neutral-xlight: #F5F5F5;
+
+$blue: #4A90E2;
+$gray: #6c757d;
+
+// Ensure all variables are defined before use
+$body-bg: $background-light;
+$text-color: $primary-text;
+$link-color: $accent-gold;
+$link-hover-color: darken($accent-gold, 10%);
+
+// Bootstrap color overrides
+$primary: $primary-text;
+$secondary: $accent-gold;
+$danger: $emphasis-red;

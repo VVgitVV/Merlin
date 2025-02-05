@@ -1,36 +1,190 @@
 <div class="home-container">
-  <header class="home-header">
-    <div class="home-logo">
-      <%= image_tag "lancelot.png", alt: "Lancelot Logo" %>
+  <div class="home-hero">
+    <div class="login-corner">
+      <%= link_to 'Login', new_user_session_path, class: 'btn btn-login' %>
     </div>
-    <h1 class="home-title">Welcome to Lancelot</h1>
-    <p class="home-description">
-      Lancelot is a powerful freelancing tool that helps you manage your clients, projects, and timesheets.
-    </p>
-    <div class="home-actions">
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
-      <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-primary" %>
+    <div class="home-header">
+      <div class="home-logo">
+        <%= image_tag 'logo.png', alt: 'Lancelot Logo' %>
+      </div>
+      <h1 class="home-title">For those who freeLANCE A LOT</h1>
+      <p class="home-description">
+        Conquer your freelance journey with medieval precision.
+        Track time, manage projects, and invoice clients seamlessly.
+      </p>
+      <div class="home-actions">
+
+        <!--<%= link_to 'Login', new_user_session_path, class: 'btn btn-primary' %>-->
+        <%= link_to 'Start Free Trial', new_user_registration_path, class: 'btn btn-primary' %>
+        <%= link_to 'Watch Demo', '#', class: 'btn btn-secondary', data: { bs_toggle: 'modal', bs_target: '#demoModal' } %>
+      </div>
     </div>
-  </header>
+  </div>
+
+  <div class="daily-quote">
+    <h2>Quote of the Day</h2>
+    <p><%= @quote %></p>
+  </div>
 
   <div class="home-features">
     <div class="home-feature">
-      <i class="fas fa-clients"></i>
-      <h2>Clients</h2>
-      <p>Easily manage your clients and their projects.</p>
-      <%= link_to "View Clients", clients_path, class: "btn btn-outline-primary" %>
+      <i class="fas fa-clock"></i>
+      <h2>Time Tracking</h2>
+      <p>Precisely track your hours with our intuitive stopwatch and timesheet system.</p>
+      <%= link_to 'Learn More', '#', class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: '#timeTrackingModal' }, style: 'border: 2px solid #7D0101; color: #7D0101; background-color: #FFFFFF;' %>
     </div>
     <div class="home-feature">
-      <i class="fas fa-projects"></i>
-      <h2>Projects</h2>
-      <p>Keep track of all your projects and their timesheets.</p>
-      <%= link_to "View Projects", projects_path, class: "btn btn-outline-primary" %>
+      <i class="fas fa-project-diagram"></i>
+      <h2>Project Management</h2>
+      <p>Organize your quests, clients, and projects with medieval efficiency.</p>
+      <%= link_to 'Learn More', '#', class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: '#projectManagementModal' }, style: 'border: 2px solid #7D0101; color: #7D0101; background-color: #FFFFFF;' %>
     </div>
     <div class="home-feature">
-      <i class="fas fa-timesheets"></i>
-      <h2>Timesheets</h2>
-      <p>Efficiently manage your time and generate invoices.</p>
-      <%= link_to "View Timesheets", "/timesheets", class: "btn btn-outline-primary" %>
+      <i class="fas fa-file-invoice-dollar"></i>
+      <h2>Invoicing</h2>
+      <p>Generate professional invoices that would make a royal scribe proud.</p>
+      <%= link_to 'Learn More', '#', class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: '#invoicingModal' }, style: 'border: 2px solid #7D0101; color: #7D0101; background-color: #FFFFFF;' %>
+    </div>
+  </div>
+
+  <section class="pricing mt-5">
+    <h2 class="text-center mb-4">Choose Your Quest</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4 wide-pricing-card">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header" style="background-color: #1B1B3A; color: #FFFFFF;">
+            <h4 class="my-0 font-weight-normal">Squire</h4>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title pricing-card-title" style="color: #1B1B3A;">$0 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>1 Active Project</li>
+              <li>Basic Time Tracking</li>
+              <li>Limited Invoicing</li>
+            </ul>
+            <%= link_to 'Start Free', new_user_registration_path, class: 'btn mt-auto', style: 'background-color: #7D0101; color: #FFFFFF; border-color: #7D0101; border-radius: 8px;' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 wide-pricing-card">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header" style="background-color: #1B1B3A; color: #FFFFFF;">
+            <h4 class="my-0 font-weight-normal">Knight</h4>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title pricing-card-title" style="color: #1B1B3A;">$19 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>5 Active Projects</li>
+              <li>Advanced Time Tracking</li>
+              <li>Unlimited Invoicing</li>
+              <li>Client Management</li>
+            </ul>
+            <%= link_to 'Become a Knight', new_user_registration_path, class: 'btn mt-auto', style: 'background-color: #7D0101; color: #FFFFFF; border-color: #7D0101; border-radius: 8px;' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 wide-pricing-card">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header" style="background-color: #1B1B3A; color: #FFFFFF;">
+            <h4 class="my-0 font-weight-normal">Lord</h4>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title pricing-card-title" style="color: #1B1B3A;">$49 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Unlimited Projects</li>
+              <li>Team Collaboration</li>
+              <li>Advanced Reporting</li>
+              <li>Priority Support</li>
+            </ul>
+            <%= link_to 'Rule Your Realm', new_user_registration_path, class: 'btn mt-auto', style: 'background-color: #7D0101; color: #FFFFFF; border-color: #7D0101; border-radius: 8px;' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Time Tracking Modal -->
+  <div class="modal fade" id="timeTrackingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Time Tracking</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Track time and work on thy project, free from the concern of billable hours.</p>
+          <ul>
+            <li>Effortless time tracking</li>
+            <li>Focus on thy craft, not on the bill</li>
+            <li>Seamless logging of thy tasks</li>
+            <li>Peace of mind, as thou work without care</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Management Modal -->
+  <div class="modal fade" id="projectManagementModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Project Management</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Manage thy project with ease, keeping all tasks in order and deadlines in sight. Stay organised and focused, as if under the watchful eye of a noble steward.</p>
+          <ul>
+            <li>Effortless task organisation</li>
+            <li>Clear deadlines and milestones</li>
+            <li>Streamlined project tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invoicing Modal -->
+  <div class="modal fade" id="invoicingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Invoicing</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Generate professional invoices that would impress even the royal treasurer.
+            Automatically calculate billable hours, add custom line items,
+            and send invoices directly to your clients with the precision of a medieval scribe.</p>
+          <ul>
+            <li>Automatic hour calculation</li>
+            <li>Customisable invoice templates</li>
+            <li>Direct client invoicing</li>
+            <li>Detailed time breakdown</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo Video Modal -->
+  <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="background-color: #F0F0F0;">
+        <div class="modal-header" style="background-color: #1B1B3A; color: #FFFFFF;">
+          <h5 class="modal-title" id="demoModalLabel">Lancelot Demo</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="ratio ratio-16x9">
+            <iframe
+              src="https://www.youtube.com/embed/AsabMFCihMA?autoplay=0&modestbranding=1&rel=0"
+              title="Lancelot Demo"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

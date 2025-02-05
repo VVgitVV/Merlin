@@ -41,6 +41,13 @@ class TimestampsController < ApplicationController
     end
   end
 
+  def destroy
+    @timestamp = Timestamp.find(params[:id])
+    @timesheet = @timestamp.timesheet
+    @timestamp.destroy
+    redirect_to client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet), status: :see_other
+  end
+
   private
 
   def set_chained_instances

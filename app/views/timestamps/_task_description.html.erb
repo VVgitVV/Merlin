@@ -1,5 +1,5 @@
 <%= simple_form_for [timesheet, timestamp] do |f| %>
     <%= f.input :task_description %>
     <%= hidden_field_tag :redirect_to, request.fullpath %>
-    <%= f.submit 'Add' %>
+    <%= f.submit 'Add', class: 'btn mt-auto red-button' %>
 <% end %>

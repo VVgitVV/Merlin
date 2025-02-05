@@ -1,24 +1,43 @@
-<div class="container">
+<%= render "shared/lancelot_nav" %>
+<div class="clients-container">
+
+
+
   <h1>Clients</h1>
 
-  <%= link_to 'New Client', new_client_path, class: 'btn btn-success' %>
+  <!-- ✅ New Client Button -->
+  <%= link_to 'New Client', new_client_path, class: 'btn btn-success mb-3' %>
 
-  <%= link_to (params[:archived] == "true" ? "Show Active Clients" : "Show Archived Clients"), clients_path(archived: (params[:archived] != "true")), class: 'btn btn-secondary' %>
+  <!-- ✅ Toggle Active/Archived Clients -->
+  <%= link_to (params[:archived] == "true" ? "Show Active Clients" : "Show Archived Clients"),
+      clients_path(archived: (params[:archived] != "true")), class: 'btn btn-secondary mb-3' %>
 
-  <ul>
+  <!-- ✅ Cards Layout Instead of List -->
+  <div class="row">
     <% @clients.each do |client| %>
-      <li>
-        <strong><%= client.name %></strong>
-        <p><%= truncate(client.description, length: 100) %></p> <!-- Shortened version -->
+      <div class="col-md-4 col-sm-6 mb-4">
 
-        <%= link_to "View", client_projects_path(client), class: "btn btn-info" %>
+        <!-- ✅ Client Card (Clickable) -->
+        <div class="client-card card">
+          <%= link_to client_projects_path(client), class: "stretched-link text-decoration-none text-dark" do %>
+            <div class="card-body">
+              <h5 class="card-title"><%= client.name %></h5>
+              <p class="card-text text-muted"><%= truncate(client.description, length: 80) %></p>
+            </div>
+          <% end %>
+        </div>
 
-        <% if client.archived? %>
-          <%= button_to "Restore", restore_client_path(client), method: :patch, class: "btn btn-success" %>
-        <% else %>
-          <%= button_to "Archive", archive_client_path(client), method: :patch, class: "btn btn-danger" %>
-        <% end %>
-      </li>
+        <!-- ✅ Archive Button (Placed Directly Below the Card) -->
+        <div class="archive-button d-flex justify-content-starts mt-2">
+          <% if client.archived? %>
+            <%= button_to "Restore", restore_client_path(client), method: :patch, class: "btn btn-success" %>
+          <% else %>
+            <%= button_to "Archive", archive_client_path(client), method: :patch, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+
+      </div>
     <% end %>
-  </ul>
+  </div>
+
 </div>
