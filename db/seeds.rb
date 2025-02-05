@@ -52,6 +52,9 @@ clients.each_with_index do |client, index|
     # Create a timesheet for the project
     timesheet = Timesheet.create!(project: project)
 
+    # Create an invoice for the timesheet
+    Invoice.create!(timesheet: timesheet)
+
     # Create 5 timestamps for the timesheet with random durations and unique task descriptions
     5.times do
       # Generate random start and end times with different durations
