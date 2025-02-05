@@ -9,11 +9,12 @@
   </div>
 
   <div class="dashboard-quick-stats">
-    <div class="stat-card">
-      <h3>Total Projects</h3>
-      <p><%= @total_projects %></p>
-
-    </div>
+    <%= link_to projects_path do %>
+      <div class="stat-card">
+        <h3>Total Projects</h3>
+        <p><%= @total_projects %></p>
+      </div>
+    <% end %>
 
     <%= link_to clients_path do %>
       <div class="stat-card">
@@ -21,11 +22,12 @@
         <p><%= @total_clients %></p>
       </div>
     <% end %>
-
-    <div class="stat-card">
-      <h3>Active Timesheets</h3>
-      <p><%= @active_timesheets.count %></p>
-    </div>
+    <%= link_to timesheets_path do %>
+      <div class="stat-card">
+        <h3>Active Timesheets</h3>
+        <p><%= @active_timesheets.count %></p>
+      </div>
+    <% end %>
   </div>
 
   <div class="dashboard-sections">
