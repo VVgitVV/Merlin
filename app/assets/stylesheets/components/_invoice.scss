@@ -1,9 +1,33 @@
+.invoice-container {
+  margin-top: 50px;
+}
+
 .invoice {
+  color: $primary;
+
+  table {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  tr, td, th {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+
   h1, h2 {
     font-family: $font-body;
   };
+
+  p {
+    margin-bottom: 0;
+  }
+
 }
 
-.details {
+.invoice-details {
+
   font-family: $font-body;
+
 }

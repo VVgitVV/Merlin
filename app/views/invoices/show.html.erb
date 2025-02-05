@@ -1,10 +1,11 @@
-<div class="container">
+<div class="container invoice-container">
   <%= render "invoice", user: @user, client: @client, project: @project, timesheet: @timesheet, timestamps: @timestamps %>
-  <div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center invoice-details">
     <%= link_to 'Create invoice',
               generate_pdf_timesheet_invoice_path(@timesheet, @invoice, format: :pdf),
               data: {turbo: false},
-              target: "_blank" %>
+              target: "_blank",
+              class: "btn red-button" %>
     <%= link_to dashboard_path, class: "navbar-brand" do %>
       <%= image_tag "logo.png", class: "logo" %>
     <% end %>
