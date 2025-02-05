@@ -3,14 +3,14 @@
   <%= render partial: 'projects/project_card', locals: { project: @project } %>
 
   <% if @project.timesheets.any? %>
-    <ul>
+
       <% @project.timesheets.each do |timesheet| %>
-        <li>
+        <div class="timesheet-card">
           <strong><%= timesheet.title %> Timesheet</strong>
           <%= link_to "View", client_project_timesheet_path(@client, @project, timesheet), class: "btn btn-info" %>
-        </li>
+        </div>
       <% end %>
-    </ul>
+
   <% else %>
     <p>No timesheets available for this project.</p>
   <% end %>
