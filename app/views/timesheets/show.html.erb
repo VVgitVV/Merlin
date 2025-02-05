@@ -5,7 +5,7 @@
     <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice) %>
   </div>
   <!-- Make table partial -->
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Date</th>
@@ -14,7 +14,7 @@
         <th scope="col">Subtotal</th>
       </tr>
     </thead>
-    <tbody data-controller="show-form">
+    <tbody data-controller="show-form" class="table-group-divider">
       <% @timestamps.each do |timestamp| %>
         <% unless timestamp.end_time.nil? || timestamp.hours == 0.0 %>
           <!-- Table row displaying timestamp -->
@@ -25,15 +25,23 @@
               <%= timestamp.task_description %>
               <!-- Edit link trigger -->
               <div data-action="click->show-form#reveal">
-                <p class="d-none">Edit</p> <i class="fa-solid fa-feather"></i>
+                <p class="edit-txt"><em>Edit</em></p> <i class="fa-solid fa-feather d-none"></i>
               </div>
             </td>
             <td>
               £<%= format('%.2f', timestamp.subtotal) %>
+
+                <!--
                 <%= link_to ("<i class='fa-solid fa-xmark'></i>").html_safe,
                   timesheet_timestamp_path(@timesheet, timestamp),
                   data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
                 %>
+                -->
+              <%= link_to "X",
+                timesheet_timestamp_path(@timesheet, timestamp),
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},
+                class: "x-button"
+              %>
             </td>
           </tr>
           <tr data-show-form-target="form" class="d-none">
@@ -42,7 +50,7 @@
             <td>
               <%= simple_form_for [@timesheet, timestamp] do |f| %>
                 <%= f.input :task_description, label: false %>
-                <%= f.submit 'Save'%>
+                <%= f.submit 'Save', class: "btn red-button"%>
               <% end %>
             </td>
             <td>£<%= format('%.2f', timestamp.subtotal) %></td>

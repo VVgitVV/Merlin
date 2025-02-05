@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :timesheets, only: [:index] do
     resources :invoices, only: [:show] do
       member do
-        post "generate_pdf"
+        get "generate_pdf"
       end
     end
 

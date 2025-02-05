@@ -4,9 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["row", "form"]
 
-  // connect() {
-  //   console.log(this.formTargets)
-  // }
+  connect() {
+    console.log(this.formTargets)
+  }
 
   reveal() {
     this.formTargets.forEach(target => target.classList.toggle("d-none"))
