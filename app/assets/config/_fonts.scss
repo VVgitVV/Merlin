@@ -1,6 +1,29 @@
-// Fonts
+// Import Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Noto+Sans:wght@400;700&display=swap');
 
-$font-header: 'MedievalSharp', cursive;
-$font-body: 'Noto Sans', sans-serif;
+// Font Variables
+$font-primary: 'Noto Sans', sans-serif;
+$font-accent: 'MedievalSharp', cursive;
 
+// Typography mixins
+@mixin medieval-heading {
+  font-family: $font-accent;
+  color: $primary-text;
+  letter-spacing: 0.05em;
+}
+
+@mixin body-text {
+  font-family: $font-primary;
+  color: $primary-text;
+  line-height: 1.6;
+}
+
+// Global typography styles
+body {
+  @include body-text;
+  background-color: $body-bg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include medieval-heading;
+}

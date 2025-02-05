@@ -1,12 +1,29 @@
-// Graphical variables
-@import "config/fonts";
 @import "config/colors";
+@import "config/fonts";
 @import "config/bootstrap_variables";
 
-// External libraries
+// Bootstrap and other framework imports
 @import "bootstrap";
-@import "font-awesome";
 
-// Your CSS partials
+// Components
+@import "components/global";
+@import "components/navbar";
+@import "components/alert";
+@import "components/form_legend_clear";
+@import "components/stopwatch";
+@import "components/timesheet";
+@import "components/invoice";
+@import "components/chatbot";
+@import "components/avatar";
 @import "components/index";
+
+// Pages
+@import "pages/home";
 @import "pages/index";
+
+// Global styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

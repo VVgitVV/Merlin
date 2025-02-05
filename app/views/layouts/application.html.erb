@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Lancelot</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Lancelot: Freelance Companion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <!-- Font Awesome -->
+<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">-->
 
-  <body>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
 
-    <%= yield %>
-  </body>
+  <!-- Bootstrap JS -->
+<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>-->
+</head>
+
+<body>
+<%= render "shared/flashes" %>
+<%= yield %>
+</body>
 </html>
