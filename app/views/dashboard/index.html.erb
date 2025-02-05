@@ -83,7 +83,7 @@
             <% end %>
 
             <% if current_user.timesheets.any? %>
-              <%= link_to timesheet_invoice_path(current_user.timesheets.first), class: 'btn-medieval' do %>
+              <%= link_to timesheet_invoice_path(current_user.timesheets.first, current_user.timesheets.first.invoice ), class: 'btn-medieval' do %>
                 <i class="fas fa-file-invoice"></i> Invoice
               <% end %>
             <% end %>
@@ -106,5 +106,3 @@
       <% end %>
     </div>
   </div>
-
-
