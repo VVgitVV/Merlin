@@ -2,12 +2,13 @@
   <div class="invoice">
     <div class="invoice-details">
       <h1><%= user %></h1>
-      <h1>Invoice for <%= @timesheet.title %></h1>
-      <p>Client: <%= client.name %></p>
-      <p>Project: <%= project.name %></p>
+      <h1>Invoice for <%= client.name %></h1>
+      <p><%= project.name %> | <%= @timesheet.title %></p>
+      <!--
       <% if project.aim.present? %>
         <p><em><%= project.aim %></em></p>
       <% end %>
+      -->
     </div>
     <table class="table table-striped">
       <thead>
