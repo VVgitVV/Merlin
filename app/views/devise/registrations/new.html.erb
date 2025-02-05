@@ -1,37 +1,80 @@
-<h2>Sign up</h2>
+<div class="authentication-container">
+  <div class="authentication-card">
+    <div class="authentication-logo">
+      <%= image_tag 'logo.png', alt: 'Lancelot Logo' %>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <h2 class="authentication-title">Join the Noble Quest</h2>
 
-  <div class="form-inputs">
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first name" }%>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "last name" }%>
-    <%= f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "username" }%>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),
+                        html: { class: 'authentication-form' }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :first_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: {
+                      autocomplete: "first name",
+                      class: 'medieval-input'
+                    },
+                    label: 'First Name of thy Character',
+                    wrapper_html: { class: 'mb-3' } %>
+
+        <%= f.input :last_name,
+                    required: true,
+                    input_html: {
+                      autocomplete: "last name",
+                      class: 'medieval-input'
+                    },
+                    label: 'Last Name of thy Character',
+                    wrapper_html: { class: 'mb-3' } %>
+
+        <%= f.input :username,
+                    required: true,
+                    input_html: {
+                      autocomplete: "username",
+                      class: 'medieval-input'
+                    },
+                    label: 'Choose thy Username',
+                    wrapper_html: { class: 'mb-3' } %>
+
+        <%= f.input :email,
+                    required: true,
+                    input_html: {
+                      autocomplete: "email",
+                      class: 'medieval-input'
+                    },
+                    label: 'Email of the Realm',
+                    wrapper_html: { class: 'mb-3' } %>
+
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: {
+                      autocomplete: "new-password",
+                      class: 'medieval-input'
+                    },
+                    label: 'Secret Passphrase',
+                    wrapper_html: { class: 'mb-3' } %>
+
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: {
+                      autocomplete: "new-password",
+                      class: 'medieval-input'
+                    },
+                    label: 'Confirm thy Passphrase',
+                    wrapper_html: { class: 'mb-3' } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Begin thy Journey", class: 'btn-medieval' %>
+      </div>
+    <% end %>
+
+    <div class="authentication-links mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

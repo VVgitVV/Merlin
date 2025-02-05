@@ -1,0 +1,108 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="header-top">
+      <h1>Welcome, Freelancer</h1>
+      <div class="header-actions">
+        <span class="user-email">Logged in as: <%= current_user.email %></span>
+        <%= link_to edit_user_registration_path, class: 'btn-medieval' do %>
+          <i class="fas fa-user-edit"></i>
+          Edit Profile
+        <% end %>
+        <%= link_to destroy_user_session_path, data: { "turbo-method": :delete }, class: 'btn-medieval' do %>
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-content">
+        <h3><i class="fas fa-project-diagram"></i> Total Projects</h3>
+        <p class="stat-number"><%= @total_projects %></p>
+      </div>
+      <%= link_to projects_path, class: 'btn-medieval' do %>
+        View All Projects <i class="fas fa-arrow-right"></i>
+      <% end %>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <h3><i class="fas fa-users"></i> Total Clients</h3>
+        <p class="stat-number"><%= @total_clients %></p>
+      </div>
+      <%= link_to clients_path, class: 'btn-medieval' do %>
+        View All Clients <i class="fas fa-arrow-right"></i>
+      <% end %>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <h3><i class="fas fa-clock"></i> Active Timesheets</h3>
+        <p class="stat-number"><%= @active_timesheets.count %></p>
+      </div>
+      <%= link_to timesheets_path, class: 'btn-medieval' do %>
+        View All Timesheets <i class="fas fa-arrow-right"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="info-card">
+      <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+      <div class="action-buttons">
+        <div class="action-row">
+          <%= link_to new_client_path, class: 'btn-medieval' do %>
+            <i class="fas fa-user-plus"></i> New Client
+          <% end %>
+
+          <%= link_to clients_path, class: 'btn-medieval' do %>
+            <i class="fas fa-users"></i> View Clients
+          <% end %>
+        </div>
+
+        <div class="action-row">
+          <% if current_user.clients.any? %>
+            <% client = current_user.clients.first %>
+            <%= link_to new_client_project_path(client), class: 'btn-medieval' do %>
+              <i class="fas fa-plus"></i> New Project
+            <% end %>
+
+            <%= link_to projects_path, class: 'btn-medieval' do %>
+              <i class="fas fa-project-diagram"></i> View Projects
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="action-row">
+          <% if current_user.clients.any? && current_user.clients.first.projects.any? %>
+            <% client = current_user.clients.first %>
+            <%= link_to new_client_project_timesheet_path(client, client.projects.first), class: 'btn-medieval' do %>
+              <i class="fas fa-clock"></i> New Timesheet
+            <% end %>
+
+            <% if current_user.timesheets.any? %>
+              <%= link_to timesheet_invoice_path(current_user.timesheets.first, current_user.timesheets.first.invoice ), class: 'btn-medieval' do %>
+                <i class="fas fa-file-invoice"></i> Invoice
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h2><i class="fas fa-star"></i> Recent Projects</h2>
+      <% if @recent_projects.any? %>
+        <% @recent_projects.each do |project| %>
+          <div class="list-item">
+            <span><i class="fas fa-project-diagram"></i> <%= project.name %></span>
+            <%= link_to 'View Details', client_project_path(project.client, project), class: 'btn-medieval' %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="empty-state">No recent projects</p>
+      <% end %>
+    </div>
+  </div>

@@ -7,6 +7,8 @@
 
 // Components
 @import "components/global";
+@import "pages/authentication";
+@import "pages/dashboard";
 @import "components/navbar";
 @import "components/alert";
 @import "components/form_legend_clear";
@@ -31,4 +33,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }

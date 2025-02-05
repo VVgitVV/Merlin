@@ -1,3 +1,30 @@
+.home-hero {
+  position: relative;
+
+  .login-corner {
+    position: absolute;
+    top: 20px;
+    right: calc(-10% + 30px);
+    z-index: 2;
+  }
+
+  .btn-login {
+    border-radius: 8px !important;
+    border: 2px solid #7D0101 !important;
+    background-color: transparent !important;
+    color: #7D0101 !important;
+    transition: all 0.3s ease !important;
+    padding: 12pxpx !important;
+    min-width: 100px;
+
+    &:hover {
+      background-color: #7D0101 !important;
+      color: #FFFFFF !important;
+    }
+  }
+}
+
+
 .home-container {
   display: flex;
   flex-direction: column;

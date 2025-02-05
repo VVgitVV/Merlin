@@ -1,16 +1,18 @@
+<%= render "shared/lancelot_nav" %>
 <div class="container">
 
   <%= render partial: 'projects/project_card', locals: { project: @project } %>
 
   <% if @project.timesheets.any? %>
-    <ul>
+
       <% @project.timesheets.each do |timesheet| %>
-        <li>
-          <strong><%= timesheet.title %> Timesheet</strong>
-          <%= link_to "View", client_project_timesheet_path(@client, @project, timesheet), class: "btn btn-info" %>
-        </li>
+        <%= link_to client_project_timesheet_path(@client, @project, timesheet) do %>
+          <div class="timesheet-card">
+            <strong><%= timesheet.title %> Timesheet</strong>
+          </div>
+        <% end %>
       <% end %>
-    </ul>
+
   <% else %>
     <p>No timesheets available for this project.</p>
   <% end %>
