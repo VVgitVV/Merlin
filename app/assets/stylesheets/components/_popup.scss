@@ -1,0 +1,18 @@
+.popup-iamge{
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 5px;
+  z-index: 100;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-image {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 8px;
+}
