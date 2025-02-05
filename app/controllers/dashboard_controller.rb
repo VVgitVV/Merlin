@@ -6,5 +6,7 @@ class DashboardController < ApplicationController
     @active_timesheets = current_user.timesheets.joins(:timestamps).where(timestamps: { end_time: nil }).distinct
     @total_projects = current_user.projects.count
     @total_clients = current_user.clients.count
+
+    @clients = Client.where(user: current_user)
   end
 end
