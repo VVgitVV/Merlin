@@ -1,0 +1,103 @@
+.authentication-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F0F0F0;
+  background-image: url('bglancelot.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(27, 27, 58, 0.5);
+    z-index: 1;
+  }
+}
+
+.authentication-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+
+  .authentication-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    img {
+      max-width: 150px;
+    }
+  }
+
+  .authentication-title {
+    font-family: 'MedievalSharp', cursive;
+    text-align: center;
+    color: #1B1B3A;
+    margin-bottom: 2rem;
+  }
+
+  .medieval-input {
+    border: 2px solid #7D0101;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-family: 'Noto Sans', sans-serif;
+
+    &:focus {
+      border-color: #E2C04F;
+      box-shadow: 0 0 0 0.2rem rgba(226, 192, 79, 0.25);
+    }
+  }
+
+  .btn-medieval {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid #7D0101;
+    background-color: transparent;
+    color: #7D0101;
+    padding: 0.75rem;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #7D0101;
+      color: #FFFFFF;
+    }
+  }
+
+  .authentication-links {
+    text-align: center;
+
+    a {
+      color: #7D0101;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #E2C04F;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .form-check-input {
+    border: 2px solid #7D0101;
+
+    &:checked {
+      background-color: #7D0101;
+      border-color: #7D0101;
+    }
+  }
+}

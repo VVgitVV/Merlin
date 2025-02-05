@@ -1,16 +1,21 @@
 <div class="home-container">
-  <div class="home-header">
-    <div class="home-logo">
-      <%= image_tag 'logo.png', alt: 'Lancelot Logo' %>
+  <div class="home-hero">
+    <div class="login-corner">
+      <%= link_to 'Login', new_user_session_path, class: 'btn btn-login' %>
     </div>
-    <h1 class="home-title">For those who freeLANCE A LOT</h1>
-    <p class="home-description">
-      Conquer your freelance journey with medieval precision.
-      Track time, manage projects, and invoice clients seamlessly.
-    </p>
-    <div class="home-actions">
-      <%= link_to 'Start Free Trial', new_user_registration_path, class: 'btn btn-primary', style: 'background-color: #7D0101; color: #FFFFFF; border-color: #7D0101;' %>
-      <%= link_to 'Watch Demo', '#', class: 'btn btn-secondary', data: { bs_toggle: 'modal', bs_target: '#demoModal' }, style: 'background-color: #E2C04F; color: #1B1B3A; border-color: #E2C04F;' %>
+    <div class="home-header">
+      <div class="home-logo">
+        <%= image_tag 'logo.png', alt: 'Lancelot Logo' %>
+      </div>
+      <h1 class="home-title">For those who freeLANCE A LOT</h1>
+      <p class="home-description">
+        Conquer your freelance journey with medieval precision.
+        Track time, manage projects, and invoice clients seamlessly.
+      </p>
+      <div class="home-actions">
+        <%= link_to 'Start Free Trial', new_user_registration_path, class: 'btn btn-primary' %>
+        <%= link_to 'Watch Demo', '#', class: 'btn btn-secondary', data: { bs_toggle: 'modal', bs_target: '#demoModal' } %>
+      </div>
     </div>
   </div>
 
