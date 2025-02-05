@@ -1,5 +1,6 @@
 puts "Cleaning database"
 
+Question.destroy_all
 Invoice.destroy_all
 Timestamp.destroy_all
 Timesheet.destroy_all
@@ -44,10 +45,22 @@ projects_data = [
   ]
 ]
 
-
 clients.each_with_index do |client, index|
   projects_data[index].each do |project_data|
-    client.projects.create!(project_data)
+    project = client.projects.create!(project_data)
+
+    # Create a timesheet for the project
+    timesheet = Timesheet.create!(project: project)
+
+    # Create 5 timestamps for the timesheet
+    5.times do |i|
+      Timestamp.create!(
+        timesheet: timesheet,
+        start_time: DateTime.now.beginning_of_day + i.hours,
+        end_time: DateTime.now.beginning_of_day + (i + 1).hours,
+        task_description: "Task #{i + 1} for project #{project.name}"
+      )
+    end
   end
 end
 
