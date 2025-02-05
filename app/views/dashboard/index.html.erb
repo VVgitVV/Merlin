@@ -1,0 +1,55 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Welcome, Freelancer</h1>
+    <div class="user-info">
+      <span>Logged in as: <%= current_user.email %></span>
+      <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+
+  <div class="dashboard-quick-stats">
+    <div class="stat-card">
+      <h3>Total Projects</h3>
+      <p><%= @total_projects %></p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Clients</h3>
+      <p><%= @total_clients %></p>
+    </div>
+    <div class="stat-card">
+      <h3>Active Timesheets</h3>
+      <p><%= @active_timesheets.count %></p>
+    </div>
+  </div>
+
+  <div class="dashboard-sections">
+    <div class="recent-projects">
+      <h2>Recent Projects</h2>
+      <% if @recent_projects.any? %>
+        <% @recent_projects.each do |project| %>
+          <div class="project-item">
+            <%= project.name %>
+            <%= link_to 'View', client_project_path(project.client, project), class: 'btn btn-sm btn-outline-primary' %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No recent projects</p>
+      <% end %>
+    </div>
+
+    <div class="active-timesheets">
+      <h2>Active Timesheets</h2>
+      <% if @active_timesheets.any? %>
+        <% @active_timesheets.each do |timesheet| %>
+          <div class="timesheet-item">
+            <%= timesheet.project.name %>
+            <%= link_to 'Stop', stop_timesheet_timestamp_path(timesheet, timesheet.timestamps.last), data: { "turbo-method": :post }, class: 'btn btn-sm btn-danger' %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No active timesheets</p>
+      <% end %>
+    </div>
+  </div>
+</div>
