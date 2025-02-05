@@ -45,7 +45,11 @@ class InvoicesController < ApplicationController
         document_content: render_to_string(
           formats: :html,
           partial: "invoices/invoice",
-          locals: {user: @user, client: @client, project: @project, timesheet: @timesheet, timestamps: @timestamps}
+          locals: { user: @user,
+                    client: @client,
+                    project: @project,
+                    timesheet: @timesheet,
+                    timestamps: @timestamps }
         )
       )
       # File.write("Invoice_#{invoice.id}.pdf", response, mode: "wb")
