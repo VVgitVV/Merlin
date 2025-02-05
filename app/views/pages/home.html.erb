@@ -4,6 +4,7 @@
       <%= image_tag "lancelot.png", alt: "Lancelot Logo" %>
     </div>
     <h1 class="home-title">Welcome to Lancelot</h1>
+
     <p class="home-description">
       Lancelot is a powerful freelancing tool that helps you manage your clients, projects, and timesheets.
     </p>
@@ -12,6 +13,11 @@
       <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-primary" %>
     </div>
   </header>
+
+  <div class="daily-quote">
+  <h2>Quote of the Day</h2>
+  <p><%= @quote %></p>
+</div>
 
   <div class="home-features">
     <div class="home-feature">
