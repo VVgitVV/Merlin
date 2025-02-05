@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = current_user.questions
+    @questions = current_user.questions.present? ? current_user.questions : []
     @question = Question.new # for form
   end
 
