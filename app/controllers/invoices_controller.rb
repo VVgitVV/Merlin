@@ -11,9 +11,15 @@ class InvoicesController < ApplicationController
   end
 
   def generate_pdf
+    @user = "#{current_user.first_name} #{current_user.last_name}"
     @timesheet = Timesheet.find(params[:timesheet_id])
+    @timestamps = @timesheet.timestamps.where.not(end_time: nil).order(:end_time)
     @invoice = Invoice.find(params[:id])
-    use_docraptor(@timesheet, @invoice)
+    @project = @timesheet.project
+    @client = @project.client
+    respond_to do |format|
+      format.pdf { use_docraptor(@timesheet, @invoice) }
+    end
   end
 
   private
@@ -31,14 +37,20 @@ class InvoicesController < ApplicationController
       response = docraptor.create_doc(
         test: true, # test documents are free but watermarked
         document_type: "pdf",
-        # document_url: "https://www.lancelot.quest/timesheets/#{timesheet.id}/invoices/#{invoice.id}"
-        # test
-        document_url: "https://www.lancelot.quest/"
-      )
+        # # use once heroku is working
+        # # document_url: "https://www.lancelot.quest/timesheets/#{timesheet.id}/invoices/#{invoice.id}"
+        # # test
+        # document_url: "https://www.lancelot.quest/"
 
-      # create_doc() returns a binary string
-      File.write("Invoice_#{invoice.id}.pdf", response, mode: "wb")
-      puts "Successfully created docraptor-hello.pdf!"
+        document_content: render_to_string(
+          formats: :html,
+          partial: "invoices/invoice",
+          locals: {user: @user, client: @client, project: @project, timesheet: @timesheet, timestamps: @timestamps}
+        )
+      )
+      # File.write("Invoice_#{invoice.id}.pdf", response, mode: "wb")
+      send_data response, filename: "Invoice_#{invoice.id}.pdf", type: "application/pdf", disposition: "inline"
+      puts "Successfully created Pdf!"
     rescue DocRaptor::ApiError => error
       puts "#{error.class}: #{error.message}"
       puts error.code
