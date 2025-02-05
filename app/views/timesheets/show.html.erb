@@ -37,12 +37,11 @@
                   data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
                 %>
                 -->
-            </td>
-            <td class="x-button table-light">
               <%= link_to "X",
-                  timesheet_timestamp_path(@timesheet, timestamp),
-                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
-                %>
+                timesheet_timestamp_path(@timesheet, timestamp),
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'},
+                class: "x-button"
+              %>
             </td>
           </tr>
           <tr data-show-form-target="form" class="d-none">
