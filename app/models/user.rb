@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :clients
+  has_many :questions
   has_many :projects, through: :clients
   has_many :timesheets, through: :projects
 

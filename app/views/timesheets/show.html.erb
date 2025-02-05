@@ -1,5 +1,9 @@
+<%= render "shared/lancelot_nav" %>
 <div class="container mb-5 timesheet">
-  <h1 class="ps-2"><%= "#{@timesheet.project.name}<br>#{@timesheet.title}".html_safe %></h1>
+  <div class="d-flex justify-content-between">
+    <h1 class="ps-2"><%= "#{@timesheet.project.name}<br>#{@timesheet.title}".html_safe %></h1>
+    <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice) %>
+  </div>
   <!-- Make table partial -->
   <table class="table table-striped">
     <thead>
@@ -54,8 +58,5 @@
   </table>
 
   <%= render "timestamps/start_button", timesheet: @timesheet, timestamp: @timestamp %>
-
-  <%= link_to 'Project dashboard', client_project_path(@timesheet.project.client, @timesheet.project) %>
-  <%= link_to 'View invoice', timesheet_invoice_path(@timesheet, @invoice) %>
 
 </div>
