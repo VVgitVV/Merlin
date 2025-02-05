@@ -31,7 +31,7 @@ class InvoicesController < ApplicationController
       response = docraptor.create_doc(
         test: true, # test documents are free but watermarked
         document_type: "pdf",
-        # document_url: "http://127.0.0.1:3000/timesheets/#{timesheet.id}/invoices/#{invoice.id}"
+        # document_url: "https://www.lancelot.quest/timesheets/#{timesheet.id}/invoices/#{invoice.id}"
         # test
         document_url: "https://www.lancelot.quest/"
       )
