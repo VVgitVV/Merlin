@@ -91,5 +91,15 @@
     &:hover {
       animation: pop-up 0.5s ease-in-out;
     }
+  };
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // Ensures both elements are aligned in the center
+    padding-bottom: 1.5rem;
+  };
+  h3 {
+    margin: 0; // Remove any default margin that might be misaligning it
   }
+
 }

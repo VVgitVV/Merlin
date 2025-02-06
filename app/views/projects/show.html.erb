@@ -41,8 +41,11 @@
 
   <% if @project.timesheets.any? %>
     <div class="project-timesheet-index card">
-      <div class="card-header">
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h3>Timesheets</h3>
+        <%= simple_form_for [@client, @project, @timesheet] do |f| %>
+          <%= f.submit 'New timesheet', class: 'blue-button' %>
+        <% end %>
       </div>
       <ul class="list-group list-group-flush">
         <% @project.timesheets.each do |timesheet| %>
@@ -53,16 +56,15 @@
         </li>
         <% end %>
       </ul>
+        <!-- Adding new timesheet button -->
+
+
     </div>
 
   <% else %>
     <p>No timesheets available for this project.</p>
   <% end %>
 
-  <!-- Adding new timesheet button -->
-  <%= simple_form_for [@client, @project, @timesheet] do |f| %>
-    <%= f.submit 'New timesheet', class: 'btn-medieval' %>
-  <% end %>
 
 
 
