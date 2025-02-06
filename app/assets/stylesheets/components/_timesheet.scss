@@ -27,7 +27,8 @@
 
   color: $primary;
   background: white;
-  border: 2px solid #7D0101;
+  // border: 2px solid #7D0101;
+  border: 2px solid $primary;
   border-radius: 16px;
   padding: 1.5rem;
 
@@ -84,6 +85,7 @@
   border: 2px solid $primary;
   border-radius: 16px;
   padding: 1.5rem;
+  margin-bottom: 16px;
   a {
     color: $primary;
     text-decoration: none;
