@@ -20,7 +20,7 @@
   <ul list-group class="list-group list-group-flush">
   <% @timesheets.each do |timesheet| %>
     <!--Need to include all levels of nesting-->
-    <li class="list-group-item"><%= link_to timesheet.title,
+    <li class="list-group-item"><%= link_to "#{timesheet.project.name} | #{timesheet.title}",
         client_project_timesheet_path(timesheet.project.client, timesheet.project, timesheet) %>
     </li>
   <% end %>
