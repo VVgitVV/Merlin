@@ -1,7 +1,7 @@
 <%= render "shared/lancelot_nav" %>
 <div class="container mb-5 timesheet">
   <div class="d-flex justify-content-between">
-    <div class="ps-2">
+    <div class="ps-2 timesheet-header">
       <h1><%= link_to @timesheet.project.name,
               client_project_path(@timesheet.project.client, @timesheet.project) %>
       </h1>

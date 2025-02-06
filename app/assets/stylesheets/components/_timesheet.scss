@@ -8,10 +8,10 @@
 
   a {
     color: $primary;
-    display: inline-block;
-    &:hover {
-      animation: pop-up 0.5s ease-in-out;
-    }
+    // display: inline-block;
+    // &:hover {
+    //   animation: pop-up 0.5s ease-in-out;
+    // }
   }
 
   table {
@@ -58,7 +58,15 @@
   }
 }
 
-
+.timesheet-header {
+  a {
+    color: $primary;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
+  }
+}
 .timesheet-index {
   background: none !important;
   background-color: transparent !important;
