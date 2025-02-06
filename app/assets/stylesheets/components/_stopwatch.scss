@@ -1,19 +1,24 @@
 .stopwatch {
+  // background-color: $gold;
   background-color: white;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
+  border: 2px solid $red;
   display: flex;
   font-family: $font-header;
   font-size: 24px;
   text-decoration: none;
   color: $red;
-  // text-shadow: 1px 1px 2px $primary;
-  filter: drop-shadow(2px 2px 6px rgba(27, 27, 58, 0.5));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
   a {
     text-decoration: none;
   };
+  // border-radius: 16px;
+  // padding: 1.5rem;
 }
+
+
 
 .stopwatch-container {
   display: flex;
@@ -32,13 +37,14 @@
 // }
 
 .stopwatch-motion {
-  // animation: spin 5s infinite forwards;
+  animation: spin 5s infinite forwards;
   // animation: horseriding-box 3s infinite forwards;
-  border: 0.1px solid $red;
   justify-content: center;
   align-items: flex-start;
   padding-top: 10px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(125, 1, 1, 0.2)), asset-url("lancelot_motion.gif");
+  background-image: radial-gradient(rgba(226, 192, 79, 0.4), rgba(226, 192, 79, 0.4), rgba(125, 1, 1, 0.4), rgba(27, 27, 58, 0.8)), asset-url("lancelot.gif");
+  // background-image: asset-url("lancelot.gif");
+  // background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(125, 1, 1, 0.1)), asset-url("lancelot_slower.gif");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -48,10 +54,12 @@
 }
 
 .stopped {
-  border: 0.1px solid $gold;
   justify-content: center;
   align-items: center;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(226, 192, 79, 0.2)), asset-url("lancelot_stopped.png");
+  // background-image: asset-url("lancelot_stopped.png");
+  background-image: radial-gradient(rgba(226, 192, 79, 0.4), rgba(226, 192, 79, 0.4), rgba(125, 1, 1, 0.4), rgba(27, 27, 58, 0.8)), asset-url("lancelot_stopped.png");
+  // background-image: asset-url("lancelot_stopped.png");
+  // background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(226, 192, 79, 0.2)), asset-url("primary_lancelot_stopped.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

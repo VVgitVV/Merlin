@@ -2,6 +2,7 @@
 <div class="container">
   <p><em>Start work on <%= @timesheet.project.name %>!</em></p>
   <%= render "timestamps/start_button", timesheet: @timesheet, timestamp: @timestamp %>
-  <%= link_to 'View timesheet', client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet) %>
-
+  <%= link_to 'View timesheet',
+      client_project_timesheet_path(@timesheet.project.client, @timesheet.project, @timesheet),
+      class: "btn-medieval" %>
 </div>

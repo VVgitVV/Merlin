@@ -9,6 +9,8 @@ class TimestampsController < ApplicationController
   end
 
   def create
+    # should stop a running stopwatch when a new one is clicked
+    Timestamp.last.update(end_time: DateTime.now) if Timestamp.last.end_time.nil?
     @timestamp = Timestamp.new
     @timesheet = Timesheet.find(params[:timesheet_id])
     @timestamp.timesheet = @timesheet

@@ -42,6 +42,15 @@
 
 </div>
           </li>
+          <li class="nav-item">
+            <% if Timestamp.last.end_time.present? %>
+              <!--currently just goes to whatever the last timesheet is.. but would be good to be able to select a project-->
+              <%= link_to "Stopwatch", new_timesheet_timestamp_path(Timestamp.last.timesheet), class: "nav-link" %>
+            <% else %>
+              <%= link_to "Stopwatch", timesheet_timestamp_path(Timestamp.last.timesheet, Timestamp.last), class: "nav-link" %>
+            <% end %>
+          </li>
+
           <li class="nav-item btn">
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link"%>
           </li>

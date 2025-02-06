@@ -1,0 +1,17 @@
+.project-show {
+  color: $primary;
+
+  .card-header {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  .btn {
+    color: $primary;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
+  }
+
+}

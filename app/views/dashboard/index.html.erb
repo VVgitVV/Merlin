@@ -76,10 +76,23 @@
         </div>
 
         <div class="action-row">
-          <% if current_user.clients.any? && current_user.clients.first.projects.any? %>
-            <% client = current_user.clients.first %>
-            <%= link_to new_client_project_timesheet_path(client, client.projects.first), class: 'btn-medieval' do %>
-              <i class="fas fa-clock"></i> New Timesheet
+            <!--
+            <% if current_user.clients.any? && current_user.clients.first.projects.any? %>
+              <% client = current_user.clients.first %>
+              <%= link_to new_client_project_timesheet_path(client, client.projects.first), class: 'btn-medieval' do %>
+                <i class="fas fa-clock"></i> New Timesheet
+            <% end %>
+            -->
+
+            <% if Timestamp.last.end_time.present? %>
+              <!--currently just goes to whatever the last timesheet is.. but would be good to be able to select a project-->
+              <%= link_to new_timesheet_timestamp_path(Timestamp.last.timesheet), class: 'btn-medieval' do %>
+                <i class="fas fa-clock"></i> Stopwatch
+              <% end %>
+            <% else %>
+              <%= link_to timesheet_timestamp_path(Timestamp.last.timesheet, Timestamp.last), class: 'btn-medieval' do %>
+                <i class="fas fa-clock"></i> Stopwatch
+              <% end %>
             <% end %>
 
             <% if current_user.timesheets.any? %>
