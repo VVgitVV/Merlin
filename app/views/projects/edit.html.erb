@@ -25,7 +25,7 @@
 
     <div class="space-y-2">
       <%= form.label :aim, class: "block font-medium" %>
-      <%= form.text_area :aim, rows: 4, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+      <%= form.text_area :aim, rows: 4, class: "mt-1 block w-full rounded-md border-gray-500 shadow-sm" %>
     </div>
 
     <div class="space-y-2">
@@ -36,17 +36,7 @@
           class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="space-y-2">
-        <%= form.label :start_date, class: "block font-medium" %>
-        <%= form.date_field :start_date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
-      </div>
 
-      <div class="space-y-2">
-        <%= form.label :end_date, class: "block font-medium" %>
-        <%= form.date_field :end_date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
-      </div>
-    </div>
 
     <div class="space-y-2">
       <%= form.label :hourly_rate, class: "block font-medium" %>
