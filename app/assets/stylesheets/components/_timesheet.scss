@@ -57,3 +57,20 @@
     text-decoration: none;
   }
 }
+.project-timesheet-index {
+  background: none !important;
+  background-color: transparent !important;
+  color: $primary;
+  background: white;
+  border: 2px solid #7D0101;
+  border-radius: 16px;
+  padding: 1.5rem;
+  a {
+    color: $primary;
+    text-decoration: none;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
+  }
+}
