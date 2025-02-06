@@ -1,0 +1,22 @@
+
+
+
+.popup-image {
+  position: absolute;
+  z-index: 100;
+  width: 150px;
+  height: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link {
+  display: inline-block; /* Ensure button layout doesn't collapse */
+}

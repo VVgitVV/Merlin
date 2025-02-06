@@ -10,7 +10,37 @@
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Take a Break", questions_path, class: "nav-link" %>
+         <!--  <%= link_to "Take a Break", questions_path, class: "nav-link" %> -->
+
+  <!-- <div data-controller="popup">
+      <%= link_to "Take a Break", questions_path, class: "btn btn-primary nav-link",
+    data: {
+      action: "mouseenter->popup#showPopup mouseleave->popup#hidePopup",
+      popup_target: "button"
+    } %>
+
+  <div data-popup-target="popup" class="popup-image hidden">
+    <img src="<%= asset_path('primary_merlin.png') %>" alt="Popup Image" class="popup-image" />
+  </div>
+</div>
+-->
+
+<div class="position-relative d-inline-block" data-controller="popup">
+  <%= link_to questions_path,
+    data: {
+      action: "mouseenter->popup#showPopup mouseleave->popup#hidePopup"
+    } do %>
+    <%= image_tag "broken_sword.png", class: "broken_sword" %>
+  <% end %>
+
+  <div data-popup-target="popup" class="popup-image hidden position-absolute" style="top: 100%; left: 0;">
+    <img src="<%= asset_path('primary_merlin.png') %>" alt="Popup Image" class="popup-image" />
+  </div>
+</div>
+
+
+
+</div>
           </li>
           <li class="nav-item">
             <% if Timestamp.last.end_time.present? %>
