@@ -3,6 +3,10 @@ require 'date'
 class TimesheetsController < ApplicationController
   before_action :set_project, only: :create
 
+  # def new
+  #   @timesheet = Timesheet.new
+  # end
+
   def index
     @timesheets = Timesheet.all.order(:created_at)
     @timesheet = Timesheet.new
