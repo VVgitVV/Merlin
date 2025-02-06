@@ -1,5 +1,17 @@
 .timesheet {
 
+  table {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  tr, td, th {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+
+  color: $primary;
   background: white;
   border: 2px solid #7D0101;
   border-radius: 16px;
@@ -10,20 +22,6 @@
     &:hover {
       cursor: pointer;
     }
-  }
-
-  // .gold-button {
-  //   background-color: $gold;
-  //   color: $primary;
-  //   border-color: $gold;
-  //   border-radius: 8px;
-  // }
-
-  a {
-    color: $red;
-    // &:hover {
-    //   text-shadow: 1px 1px 2px rgba(27, 27, 58, 0.5);
-    // }
   }
 
   tbody {
@@ -37,7 +35,10 @@
 
   .x-button {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 10px;
+    transform: translateY(-50%);
+    color: $red !important;
+    text-decoration: none;
   }
 }

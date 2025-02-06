@@ -1,12 +1,14 @@
   <%= stylesheet_link_tag asset_url("application.css") %>
   <div class="invoice">
     <div class="invoice-details">
-      <h1><%= user %> | Invoice for <%= @timesheet.title %></h1>
-      <p>Client: <%= client.name %></p>
-      <p>Project: <%= project.name %></p>
+      <h1><%= user %></h1>
+      <h1>Invoice for <%= client.name %></h1>
+      <p><%= project.name %> | <%= @timesheet.title %></p>
+      <!--
       <% if project.aim.present? %>
         <p><em><%= project.aim %></em></p>
       <% end %>
+      -->
     </div>
     <table class="table table-striped">
       <thead>
@@ -17,7 +19,7 @@
           <th scope="col">Subtotal</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
         <% timestamps.each do |timestamp| %>
           <% unless timestamp.end_time.nil? || timestamp.hours == 0.0 %>
             <!--Create conditional with if timestamps.same_date, group together-->

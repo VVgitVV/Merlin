@@ -1,13 +1,21 @@
-<div class="container">
+<div class="container invoice-container">
   <%= render "invoice", user: @user, client: @client, project: @project, timesheet: @timesheet, timestamps: @timestamps %>
-  <div class="d-flex justify-content-between align-items-center">
-    <%= link_to 'Create invoice',
+  <div class="d-flex justify-content-between align-items-center invoice-details">
+    <%= link_to 'Download invoice',
               generate_pdf_timesheet_invoice_path(@timesheet, @invoice, format: :pdf),
               data: {turbo: false},
-              target: "_blank" %>
+              target: "_blank",
+              class: "btn btn-medieval" %>
+
+    <!--
     <%= link_to dashboard_path, class: "navbar-brand" do %>
       <%= image_tag "logo.png", class: "logo" %>
     <% end %>
+    -->
+    <!--Would like this to be in included in the invoice partial but the pdf won't generate with it-->
+    <div class="d-flex justify-content-end">
+      <p><em>Powered by </em><%= image_tag "logo.png", class: "logo-small" %></p>
+    </div>
   </div>
 
 </div>
