@@ -40,12 +40,15 @@
   </div>
 
   <% if @project.timesheets.any? %>
-    <div class="project-timesheet-index">
+    <div class="project-timesheet-index card">
+      <div class="card-header">
+        <h3>Timesheets</h3>
+      </div>
       <ul class="list-group list-group-flush">
         <% @project.timesheets.each do |timesheet| %>
         <li class="list-group-item">
           <%= link_to client_project_timesheet_path(@client, @project, timesheet) do %>
-            <strong><%= timesheet.title %> Timesheet</strong>
+            <strong><%= "#{timesheet.title} | Current Total: £#{timesheet.total}" %></strong>
           <% end %>
         </li>
         <% end %>

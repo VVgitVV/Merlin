@@ -1,3 +1,10 @@
 .project-show {
   color: $primary;
+
+  .card-header {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+
 }
