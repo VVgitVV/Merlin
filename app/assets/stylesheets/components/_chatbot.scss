@@ -3,6 +3,10 @@
 
 .chatbot {
   background: $white;
+  // background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), asset-url("gold_merlin.png");
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position: center;
   margin-top: 9px;
   height: calc(100vh - 75px);
   display: flex;
@@ -17,6 +21,11 @@
   }
 
   #questions {
+    background-image: asset-url("gold_merlin.png");
+    // background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), asset-url("gold_merlin.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 100%;
     overflow: scroll;
     padding: 1rem;
@@ -51,6 +60,10 @@
 
   #new_question {
     //border-top: 1px solid #{$neutral-medium};
+    // background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), asset-url("gold_merlin.png");
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    // background-position: center;
     padding: 1rem;
 
     .form-group {
