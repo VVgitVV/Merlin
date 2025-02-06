@@ -1,0 +1,10 @@
+.broken_sword{
+  width: 70px;  /* Set the width */
+  height: 70px;  /* Set the height */
+  border-radius: 50%;  /* Make it round */
+  overflow: hidden;  /* Ensure the image doesn't overflow */
+  border: none;  /* Remove default button border */
+  background: transparent;  /* Remove default button background */
+
+  object-fit: cover;  /* Ensure the image covers the button */
+}
