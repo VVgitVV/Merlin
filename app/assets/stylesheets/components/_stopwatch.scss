@@ -42,7 +42,8 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 10px;
-  background-image: asset-url("lancelot.gif");
+  background-image: radial-gradient(rgba(226, 192, 79, 0.4), rgba(226, 192, 79, 0.4), rgba(125, 1, 1, 0.4), rgba(27, 27, 58, 0.8)), asset-url("lancelot.gif");
+  // background-image: asset-url("lancelot.gif");
   // background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(125, 1, 1, 0.1)), asset-url("lancelot_slower.gif");
   background-size: contain;
   background-repeat: no-repeat;
@@ -55,7 +56,8 @@
 .stopped {
   justify-content: center;
   align-items: center;
-  background-image: asset-url("lancelot_stopped.png");
+  // background-image: asset-url("lancelot_stopped.png");
+  background-image: radial-gradient(rgba(226, 192, 79, 0.4), rgba(226, 192, 79, 0.4), rgba(125, 1, 1, 0.4), rgba(27, 27, 58, 0.8)), asset-url("lancelot_stopped.png");
   // background-image: asset-url("lancelot_stopped.png");
   // background-image: radial-gradient(rgba(255, 255, 255, 0.1), rgba(226, 192, 79, 0.2)), asset-url("primary_lancelot_stopped.png");
   background-size: contain;
