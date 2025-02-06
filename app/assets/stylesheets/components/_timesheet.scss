@@ -55,6 +55,10 @@
   a {
     color: $primary;
     text-decoration: none;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
   }
 }
 .project-timesheet-index {
