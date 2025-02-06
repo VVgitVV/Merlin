@@ -1,5 +1,19 @@
 .timesheet {
 
+  // .btn-medieval {
+  //   a {
+  //     color: $red;
+  //   }
+  // }
+
+  a {
+    color: $primary;
+    // display: inline-block;
+    // &:hover {
+    //   animation: pop-up 0.5s ease-in-out;
+    // }
+  }
+
   table {
     background: none !important;
     background-color: transparent !important;
@@ -13,7 +27,8 @@
 
   color: $primary;
   background: white;
-  border: 2px solid #7D0101;
+  // border: 2px solid #7D0101;
+  border: 2px solid $primary;
   border-radius: 16px;
   padding: 1.5rem;
 
@@ -41,4 +56,60 @@
     color: $red !important;
     text-decoration: none;
   }
+}
+
+.timesheet-header {
+  a {
+    color: $primary;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
+  }
+}
+.timesheet-index {
+  background: none !important;
+  background-color: transparent !important;
+  color: $primary;
+  background: white;
+  border: 2px solid #7D0101;
+  border-radius: 16px;
+  padding: 1.5rem;
+  a {
+    color: $primary;
+    text-decoration: none;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
+  }
+}
+.project-timesheet-index {
+  background: none !important;
+  background-color: transparent !important;
+  // background-color: white !important;
+  color: $primary;
+  background: white;
+  border: 2px solid $primary;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 16px;
+  a {
+    color: $primary;
+    text-decoration: none;
+    display: inline-block;
+    &:hover {
+      animation: pop-up 0.5s ease-in-out;
+    }
+  };
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // Ensures both elements are aligned in the center
+    padding-bottom: 1.5rem;
+  };
+  h3 {
+    margin: 0; // Remove any default margin that might be misaligning it
+  }
+
 }

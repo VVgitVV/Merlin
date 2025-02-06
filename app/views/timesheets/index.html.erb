@@ -1,5 +1,5 @@
 <%= render "shared/lancelot_nav" %>
-<div class="container">
+<div class="container timesheet-index">
   <h1>Timesheets</h1>
 
   <!--Do we even want this?-->
@@ -17,13 +17,13 @@
   </div>
   -->
 
-  <ul>
-  <% @timesheets.each do |timesheet| %>
-    <!--Need to include all levels of nesting-->
-    <li><%= link_to timesheet.title,
-        client_project_timesheet_path(timesheet.project.client, timesheet.project, timesheet) %>
-    </li>
-  <% end %>
+  <ul list-group class="list-group list-group-flush">
+    <% @timesheets.each do |timesheet| %>
+      <!--Need to include all levels of nesting-->
+      <li class="list-group-item"><%= link_to "#{timesheet.project.name} | #{timesheet.title}",
+          client_project_timesheet_path(timesheet.project.client, timesheet.project, timesheet) %>
+      </li>
+    <% end %>
   </ul>
 
 
