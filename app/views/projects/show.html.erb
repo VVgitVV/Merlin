@@ -2,33 +2,36 @@
 <div class="container project-show">
 
   <div class="project-details">
-    <h1 class="project-title"><%= @project.name %></h1>
+    <div class="title-line d-flex justify-content-between">
+      <h1 class="project-title"><%= @project.name %></h1>
+      <div class="project-btns d-flex justify-content-between">
+          <!-- ✅ Project Completion Section (NEW) -->
+
+          <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn' %>
+          <% if @project.completed? %>
+            <p class="text-success"><strong>✅ Project Completed</strong></p>
+          <% else %>
+            <%= button_to "Mark as Completed", complete_client_project_path(@client, @project), method: :patch, class: "btn" %>
+          <% end %>
+
+
+        <!-- Archive/Restore Buttons -->
+
+        <% if @project.archived? %>
+          <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn" %>
+        <% else %>
+          <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn" %>
+        <% end %>
+
+
+      </div>
+    </div>
+
     <p class="project-description"><%= @project.aim %></p>
     <p class="project-hourly-rate">Hourly Rate: £<%= format('%.2f', @project.hourly_rate) %>/hour</p>
     <p class="project-status">
       Status: <%= @project.completed ? "Completed" : "In Progress" %>
     </p>
-    <div class="project-btns d-flex justify-content-between">
-        <!-- ✅ Project Completion Section (NEW) -->
-
-        <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn-medieval' %>
-        <% if @project.completed? %>
-          <p class="text-success"><strong>✅ Project Completed</strong></p>
-        <% else %>
-          <%= button_to "Mark as Completed", complete_client_project_path(@client, @project), method: :patch, class: "btn-medieval" %>
-        <% end %>
-
-
-      <!-- Archive/Restore Buttons -->
-
-      <% if @project.archived? %>
-        <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn-medieval" %>
-      <% else %>
-        <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn-medieval" %>
-      <% end %>
-
-
-    </div>
     <% unless defined?(@project) && @project == @project %>
       <% if defined?(@client) && @client.present? %>
         <%= link_to 'View Project', client_project_path(@client, project), class: 'btn-medieval' %>
