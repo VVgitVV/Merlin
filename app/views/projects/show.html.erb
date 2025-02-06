@@ -1,7 +1,43 @@
 <%= render "shared/lancelot_nav" %>
-<div class="container">
+<div class="container project-show">
 
-  <%= render partial: 'projects/project_card', locals: { project: @project } %>
+  <div class="project-details">
+    <h3 class="project-title"><%= @project.name %></h3>
+    <p class="project-description"><%= @project.aim %></p>
+    <p class="project-hourly-rate">Hourly Rate: £<%= format('%.2f', @project.hourly_rate) %>/hour</p>
+    <p class="project-status">
+      Status: <%= @project.completed ? "Completed" : "In Progress" %>
+    </p>
+    <div class="project-btns d-flex justify-content-between">
+        <!-- ✅ Project Completion Section (NEW) -->
+
+        <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn-medieval' %>
+        <% if @project.completed? %>
+          <p class="text-success"><strong>✅ Project Completed</strong></p>
+        <% else %>
+          <%= button_to "Mark as Completed", complete_client_project_path(@client, @project), method: :patch, class: "btn-medieval" %>
+        <% end %>
+
+
+      <!-- Archive/Restore Buttons -->
+
+      <% if @project.archived? %>
+        <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn-medieval" %>
+      <% else %>
+        <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn-medieval" %>
+      <% end %>
+
+
+    </div>
+    <% unless defined?(@project) && @project == @project %>
+      <% if defined?(@client) && @client.present? %>
+        <%= link_to 'View Project', client_project_path(@client, project), class: 'btn-medieval' %>
+      <% else %>
+        <% client = project.client %>
+        <%= link_to 'View Project', client_project_path(client, project), class: 'btn-medieval' %>
+      <% end %>
+    <% end %>
+  </div>
 
   <% if @project.timesheets.any? %>
 
@@ -19,30 +55,15 @@
 
   <!-- Adding new timesheet button -->
   <%= simple_form_for [@client, @project, @timesheet] do |f| %>
-    <%= f.submit 'New timesheet', class: 'btn btn-success' %>
+    <%= f.submit 'New timesheet', class: 'btn-medieval' %>
   <% end %>
 
 
-  <!-- ✅ Project Completion Section (NEW) -->
-  <div class="completion-status mb-3 d-flex gap-2 flex-wrap">
-    <%= link_to 'Edit Project', edit_client_project_path(@client, @project), class: 'btn btn-primary' %>
-    <%= link_to "Projects for #{@client.name}", client_projects_path(@client), class: 'btn btn-secondary' %>
-    <% if @project.completed? %>
-      <p class="text-success"><strong>✅ Project Completed</strong></p>
-    <% else %>
-      <%= button_to "Mark as Completed", complete_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
-    <% end %>
-  </div>
 
-  <!-- Archive/Restore Buttons -->
-  <div class="d-flex gap-2 flex-wrap">
-  <% if @project.archived? %>
-    <%= button_to "Restore Project", restore_client_project_path(@client, @project), method: :patch, class: "btn btn-success" %>
-  <% else %>
-    <%= button_to "Archive", archive_client_project_path(@client, @project), method: :patch, class: "btn btn-danger" %>
-  <% end %>
-  </div>
+
   <% if @project.timesheets.present? %>
     <%= render "timestamps/start_button", timesheet: @project.timesheets.last, timestamp: @timestamp %>
   <% end %>
+  <%= link_to "Return to #{@client.name} projects", client_projects_path(@client), class: 'blue-button' %>
+
 </div>
